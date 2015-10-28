@@ -1,0 +1,2 @@
+# Shakkitekoaly
+Tiralabra projekti
