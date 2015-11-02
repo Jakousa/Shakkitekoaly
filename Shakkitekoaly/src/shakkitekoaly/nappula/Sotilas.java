@@ -12,7 +12,7 @@ public class Sotilas extends Nappula {
         if (this.getVari()) {
             i = -1;
         }
-        return (lahto.getY() == kohde.getY() && 
+        return (Math.abs(lahto.getY() - kohde.getY()) < 2 && 
                 lahto.getX() + i == kohde.getX());
     }
 

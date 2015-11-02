@@ -4,14 +4,15 @@ import shakkitekoaly.nappula.*;
 import static shakkitekoaly.nappula.Tyyppi.*;
 
 /**
- * 
+ *
  * @author hatchy
- * 
+ *
  * Lauta huolehtii nappuloista
  */
 public class Lauta {
 
     private Nappula[] lauta;
+
     /**
      * Nappulat luodaan konstruktorin aikana
      */
@@ -26,32 +27,44 @@ public class Lauta {
     public Nappula[] getLauta() {
         return this.lauta;
     }
-/**
- * @param n Nappula jota halutaan siirtää
- * @param kohde Paikka johon nappula halutaan siirtää
- * @return Palauttaa tosi jos nappula siirrettiin muuten false
- * 
- * Siirtää nappulan ja kutsuu syömistä
- * 
- */
+
+    /**
+     * @param n Nappula jota halutaan siirtää
+     * @param kohde Paikka johon nappula halutaan siirtää
+     * @return Palauttaa tosi jos nappula siirrettiin muuten false
+     *
+     * Siirtää nappulan ja kutsuu syömistä
+     *
+     */
     public boolean siirraNappulaa(Nappula n, Sijainti kohde) {
-        if (n.getTyyppi() == SOTILAS) {
-            //if ();
-        }
-        if (n.siirry(n.getSijainti(), kohde) && 
-                (n.getTyyppi() == RATSU || onkoReitti(n, kohde))) {
+            /**
+             * Sotilas on hieman purkka+teippi tapaus, tehdään erikseen 
+             * Saa liikkua eteenpäin jos siinä ei ole mitään tai 
+             * Saa liikkua kulmittain jos siellä on jotain
+             */
+            
+        if (n.siirry(n.getSijainti(), kohde)
+                && (n.getTyyppi() == RATSU || onkoReitti(n, kohde))) {
             int s = -1;
             for (int i = 0; i < lauta.length; i++) {
                 Nappula nappula = lauta[i];
                 if (nappula.getSijainti().equals(kohde)) {
-                    if (nappula.getVari() == n.getVari()) {
+                    if (nappula.getVari() == n.getVari() || 
+                            (n.getTyyppi() == SOTILAS && 
+                            n.getSijainti().getY() == nappula.getSijainti().getY())) {
                         return false;
                     }
                     s = i;
+                    break;
                 }
             }
             if (s != -1) {
                 syo(s);
+            }
+            if (n.getTyyppi() == SOTILAS && 
+                    kohde.getY() != n.getSijainti().getY() && 
+                    s == -1) {
+                return false;
             }
             n.setSijainti(kohde);
         }
@@ -62,7 +75,7 @@ public class Lauta {
      * @param n Nappula jota halutaan siirtää
      * @param kohde Kohde minne nappulaa yritetään siirtää
      * @return palauttaa pystyykö reitillä siirtymään suoraan
-     * 
+     *
      * Selvittää onko siirtymisen tiellä muita nappuloita, ei käytetä ratsulle
      */
     public boolean onkoReitti(Nappula n, Sijainti kohde) {
@@ -91,14 +104,14 @@ public class Lauta {
 
         return onkoReitti(n, uus);
     }
- 
+
     /**
      * @param aloitusX Rivi jolle täytetään nappulat
      * @param vari Pelaaja jolle nappulat annetaan
      * @param kohta Kertoo mihin nappula tulee rivillä laittaa
-     * 
-     * Käytetään vain apuna konstruktorissa, täyttää rivin erilaisilla nappuloilla
-     * tai sotilailla jos ei ole päätyrivi
+     *
+     * Käytetään vain apuna konstruktorissa, täyttää rivin erilaisilla
+     * nappuloilla tai sotilailla jos ei ole päätyrivi
      */
     private void alustusApu(int aloitusX, boolean vari, int kohta) {
         int i = 0;
@@ -146,7 +159,7 @@ public class Lauta {
 
     /**
      * @param s Mistä kohdin lautaa poistetaan nappula
-     * 
+     *
      * Poistaa nappulan laudalta ja pienentää nappulalistaa
      */
     private void syo(int s) { //Kirjoitetaan tarvittaessa omalla
