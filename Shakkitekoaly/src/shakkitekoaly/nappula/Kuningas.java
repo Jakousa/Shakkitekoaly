@@ -16,13 +16,16 @@ public class Kuningas extends Nappula {
     }
 
     @Override
-    public boolean siirry(Sijainti lahto, Sijainti kohde) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
+        return (Math.abs(lahto.getX() - kohde.getX()) < 2 && 
+                Math.abs(lahto.getY() - kohde.getY()) < 2);
     }
 
     @Override
     public String piirra() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (this.getVari()) {
+            return "K";
+        }
+        return "k";    }
     
 }
