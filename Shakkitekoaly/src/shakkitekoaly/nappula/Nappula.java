@@ -2,10 +2,6 @@ package shakkitekoaly.nappula;
 
 import java.util.Objects;
 
-/**
- *
- * @author hatchy
- */
 public abstract class Nappula {
     private Sijainti sijainti;
     private Tyyppi tyyppi;
@@ -27,6 +23,10 @@ public abstract class Nappula {
 
     public Sijainti getSijainti() {
         return sijainti;
+    }
+    
+    public void setSijainti(Sijainti s) {
+        this.sijainti = s;
     }
     
     public boolean siirry(Sijainti lahto, Sijainti kohde){

@@ -3,10 +3,6 @@ package shakkitekoaly;
 import shakkitekoaly.nappula.*;
 import static shakkitekoaly.nappula.Tyyppi.*;
 
-/**
- *
- * @author hatchy
- */
 public class Lauta {
 
     private Nappula[] lauta;
@@ -18,21 +14,44 @@ public class Lauta {
         alustusApu(7, true, 16);
         alustusApu(6, true, 24);
     }
+    
+    public Nappula[] getLauta(){
+        return this.lauta;
+    }
 
     public boolean siirraNappulaa(Nappula n, Sijainti kohde) {
         if (n.siirry(n.getSijainti(), kohde)) {
+            if(n.getTyyppi() != RATSU) {
+                onkoReitti(n, kohde);
+            }
+            
             int s = -1;
             for (int i = 0; i < lauta.length; i++) {
                 Nappula nappula = lauta[i];
-                if (nappula.getSijainti() == n.getSijainti()) {
+                if (nappula.getSijainti().equals(kohde)) {
+                    if (nappula.getVari() == n.getVari()) {
+                        return false;
+                    }
                     s = i;
                 }
             }
             if (s != -1) {
                 syo(s);
             }
+            n.setSijainti(kohde);
         }
         return false;
+    }
+    
+    public boolean onkoReitti(Nappula n, Sijainti kohde) {
+       Sijainti uus = new Sijainti(0,0);
+       //Kesken
+        for (Nappula nappula : lauta) {
+            if (nappula.getSijainti().equals(uus)) {
+                return false;
+            }
+        }
+        return onkoReitti(n, uus);
     }
 
     private void alustusApu(int aloitusX, boolean vari, int kohta) {
@@ -80,5 +99,7 @@ public class Lauta {
         Nappula[] uus = new Nappula[lauta.length-1];
         System.arraycopy(lauta, 0, uus, 0, s);
         System.arraycopy(lauta, s+1, uus, s, lauta.length - s - 1);
+        this.lauta = uus;
+        System.out.println("onnistuiko");
     }
 }
