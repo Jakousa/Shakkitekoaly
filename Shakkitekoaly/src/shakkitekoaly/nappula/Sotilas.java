@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package shakkitekoaly.nappula;
 
-/**
- *
- * @author hatchy
- */
 public class Sotilas extends Nappula {
 
     public Sotilas(int x, int y, boolean vari, Tyyppi tyyppi) {
@@ -17,7 +8,12 @@ public class Sotilas extends Nappula {
 
     @Override
     public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
-        return false; //Sotilaat vaativat enemmän työtä
+        int i = 1;
+        if (this.getVari()) {
+            i = -1;
+        }
+        return (lahto.getY() == kohde.getY() && 
+                lahto.getX() + i == kohde.getX());
     }
 
     @Override

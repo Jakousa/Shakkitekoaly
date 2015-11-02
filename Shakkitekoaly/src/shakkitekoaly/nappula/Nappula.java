@@ -36,7 +36,7 @@ public abstract class Nappula {
             return false;
         }
         if (okSiirtya(lahto, kohde)) {
-            return true; //Lisätään muuta. Eipä lisätäkkään
+            return true;
         }
         return false;
     }
