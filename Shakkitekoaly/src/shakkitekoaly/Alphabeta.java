@@ -19,12 +19,21 @@ public class Alphabeta {
         this.pelaaja = pelaaja;
         this.syvyys = syvyys;
     }
+
+    public Lauta getLauta() {
+        return lauta;
+    }
+
+    public boolean isPelaaja() {
+        return pelaaja;
+    }
+    
+    
     
     /**
      * Siirtää nappulaa laudalla tekemänsä arvion mukaan
      * 
      */
-
     public void teeSiirto() {
         
     }
@@ -34,11 +43,12 @@ public class Alphabeta {
      * Palauttaa suuren luvun jos tilanne arvioidaan hyväksi ja pienemmän jos
      * tilanne on huonompi.
      * 
+     * @param l Lista nappuloita eli lauta jota halutaan arvioida
      * @return palauttaa tehdyn arvion laudasta kokonaislukuna
      */
-    public int arvioiLauta() {
+    public int arvioiLauta(Nappula[] l) {
         int v = 0;
-        for (Nappula nappula : lauta.getLauta()) {
+        for (Nappula nappula : l) {
             int kerroin = 1;
             if (nappula.getVari() != pelaaja) {
                 kerroin = -1;

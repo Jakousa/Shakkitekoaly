@@ -19,30 +19,34 @@ import static shakkitekoaly.nappula.Tyyppi.*;
  */
 public class NappulaTest {
     
-    public NappulaTest() {
+    @Test
+    public void laudanRajat() {
+        Nappula n = new Kuningatar(5,5,true);
+        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(8,5))));
+        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(5,8))));
+        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(-1,5))));
+        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(5,-1))));
+        
+//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(5,0)));
+//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(0,5)));
+//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(5,7)));
+//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(7,5)));
+        
+    }
+    @Test
+    public void equalsTesti() {
+        Nappula n = new Kuningas(0,0,true);
+        Nappula m = new Kuningatar(0,0,true);
+        Nappula h = new Kuningas(1,0,true);
+        Nappula i = new Kuningas(0,1,true);
+        Nappula j = new Kuningas(0,0,false);
+        Nappula k = new Kuningas(0,0,true);
+        
+        assertTrue(!(n.equals(m)));
+        assertTrue(!(n.equals(h)));
+        assertTrue(!(n.equals(i)));
+        assertTrue(!(n.equals(j)));
+        assertTrue((n.equals(k)));
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
-    Nappula nappula = new Torni(0, 0, true, TORNI);
 }

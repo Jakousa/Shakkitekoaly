@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import shakkitekoaly.nappula.*;
 
 /**
  *
@@ -18,28 +19,15 @@ import static org.junit.Assert.*;
  */
 public class AlphabetaTest {
     
-    public AlphabetaTest() {
-    }
+    Alphabeta l = new Alphabeta(new Lauta(), true, 2);
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Test
+    public void arviointiMuutos(){
+        Nappula[] lauta = new Nappula[2];
+        lauta[0] = new Torni(3,3, true);
+        int v = l.arvioiLauta(lauta);
+        lauta[1] = new Torni(3,4, false);
+        int j = l.arvioiLauta(lauta);
+        assertTrue(v != j);
     }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

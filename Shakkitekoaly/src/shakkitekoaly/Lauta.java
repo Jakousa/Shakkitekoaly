@@ -22,7 +22,7 @@ public class Lauta {
         alustusApu(6, true, 24);
     }
 
-    public Nappula[] getLauta() {
+    public Nappula[] getNappulat() {
         return this.lauta;
     }
 

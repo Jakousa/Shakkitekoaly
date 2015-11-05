@@ -22,6 +22,10 @@ public abstract class Nappula {
      * @param tyyppi Nappulan tyyppi (Torni, Sotilas, jne.)
      */
     public Nappula(int x, int y, boolean vari, Tyyppi tyyppi) {
+        if (x > 7 || x < 0 || y < 0 || y > 7) {
+            System.out.println("Yritettiin luoda nappula kentän ulkopuolelle");
+            throw new IllegalArgumentException("Luo nappula kentän sisälle");
+        }
         this.sijainti = new Sijainti(x, y);
         this.vari = vari;
         this.tyyppi = tyyppi;
@@ -59,10 +63,7 @@ public abstract class Nappula {
                 (lahto.getX() == kohde.getX() && lahto.getY() == kohde.getY())){
             return false;
         }
-        if (okSiirtya(lahto, kohde)) {
-            return true;
-        }
-        return false;
+        return okSiirtya(lahto, kohde);
     }
     
     /**
@@ -73,7 +74,7 @@ public abstract class Nappula {
      * @param kohde Minne halutaan siirtyä.
      * @return Palauttaa tosi jos siirtyminen on mahdollista. Muuten epätosi.
      */
-    public abstract boolean okSiirtya(Sijainti lahto, Sijainti kohde);
+    abstract boolean okSiirtya(Sijainti lahto, Sijainti kohde);
     
     /**
      * Jokaisella nappulalla oma "kuva" joka toteutetaan

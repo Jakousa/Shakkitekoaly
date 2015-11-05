@@ -18,28 +18,12 @@ import static org.junit.Assert.*;
  */
 public class LautaTest {
     
-    public LautaTest() {
+    Lauta l = new Lauta();
+    
+    @Test
+    public void alustetaanOikein(){
+        assertTrue(l.getNappulat().length == (8*4));
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
