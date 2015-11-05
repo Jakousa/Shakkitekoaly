@@ -23,11 +23,15 @@ public class AlphabetaTest {
     
     @Test
     public void arviointiMuutos(){
-        Nappula[] lauta = new Nappula[2];
-        lauta[0] = new Torni(3,3, true);
+        Nappula[] lauta = new Nappula[1];
+        lauta[0] = new Torni(3, 3, true);
         int v = l.arvioiLauta(lauta);
-        lauta[1] = new Torni(3,4, false);
+        
+        lauta = new Nappula[2];
+        lauta[0] = new Torni(3, 3, true);
+        lauta[1] = new Torni(3, 4, false);
         int j = l.arvioiLauta(lauta);
-        assertTrue(v != j);
+        
+        assertTrue(v > j);
     }
 }
