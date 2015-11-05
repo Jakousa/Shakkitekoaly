@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package shakkitekoaly.nappula;
 
 public class Sijainti {

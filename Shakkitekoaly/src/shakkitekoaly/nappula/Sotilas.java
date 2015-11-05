@@ -1,9 +1,14 @@
+/**
+ * 
+ */
 package shakkitekoaly.nappula;
+
+import static shakkitekoaly.nappula.Tyyppi.SOTILAS;
 
 public class Sotilas extends Nappula {
 
-    public Sotilas(int x, int y, boolean vari, Tyyppi tyyppi) {
-        super(x, y, vari, tyyppi);
+    public Sotilas(int x, int y, boolean vari) {
+        super(x, y, vari, SOTILAS);
     }
 
     @Override

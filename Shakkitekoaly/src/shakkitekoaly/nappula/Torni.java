@@ -1,13 +1,14 @@
+/**
+ * 
+ */
 package shakkitekoaly.nappula;
 
-/**
- *
- * @author hatchy
- */
+import static shakkitekoaly.nappula.Tyyppi.TORNI;
+
 public class Torni extends Nappula {
 
-    public Torni(int x, int y, boolean vari, Tyyppi tyyppi) {
-        super(x, y, vari, tyyppi);
+    public Torni(int x, int y, boolean vari) {
+        super(x, y, vari, TORNI);
     }
 
     @Override

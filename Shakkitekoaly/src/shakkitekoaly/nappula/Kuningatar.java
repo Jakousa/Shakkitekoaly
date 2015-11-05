@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
  */
 package shakkitekoaly.nappula;
 
-/**
- *
- * @author hatchy
- */
+import static shakkitekoaly.nappula.Tyyppi.KUNINGATAR;
+
 public class Kuningatar extends Nappula {
 
-    public Kuningatar(int x, int y, boolean vari, Tyyppi tyyppi) {
-        super(x, y, vari, tyyppi);
+    public Kuningatar(int x, int y, boolean vari) {
+        super(x, y, vari, KUNINGATAR);
     }
 
     @Override
@@ -25,8 +21,8 @@ public class Kuningatar extends Nappula {
     @Override
     public String piirra() {
         if (this.getVari()) {
-            return "K";
+            return "Q";
         }
-        return "k";    }
+        return "q";    }
     
 }

@@ -1,20 +1,18 @@
+/**
+ *
+ * Lauta huolehtii nappuloista ja niiden siirtämisestä.
+ */
 package shakkitekoaly;
 
 import shakkitekoaly.nappula.*;
 import static shakkitekoaly.nappula.Tyyppi.*;
 
-/**
- *
- * @author hatchy
- *
- * Lauta huolehtii nappuloista
- */
 public class Lauta {
 
     private Nappula[] lauta;
 
     /**
-     * Nappulat luodaan konstruktorin aikana
+     * Nappulat luodaan konstruktorin aikana.
      */
     public Lauta() {
         lauta = new Nappula[16 * 2];
@@ -29,19 +27,16 @@ public class Lauta {
     }
 
     /**
-     * @param n Nappula jota halutaan siirtää
-     * @param kohde Paikka johon nappula halutaan siirtää
-     * @return Palauttaa tosi jos nappula siirrettiin muuten false
-     *
-     * Siirtää nappulan ja kutsuu syömistä
+     * 
+     * 
+     * Siirtää nappulan ja kutsuu syömistä.
+     * 
+     * @param n Nappula jota halutaan siirtää.
+     * @param kohde Paikka johon nappula halutaan siirtää.
+     * @return Palauttaa tosi jos nappula siirrettiin muuten false.
      *
      */
     public boolean siirraNappulaa(Nappula n, Sijainti kohde) {
-            /**
-             * Sotilas on hieman purkka+teippi tapaus, tehdään erikseen 
-             * Saa liikkua eteenpäin jos siinä ei ole mitään tai 
-             * Saa liikkua kulmittain jos siellä on jotain
-             */
             
         if (n.siirry(n.getSijainti(), kohde)
                 && (n.getTyyppi() == RATSU || onkoReitti(n, kohde))) {
@@ -72,11 +67,13 @@ public class Lauta {
     }
 
     /**
-     * @param n Nappula jota halutaan siirtää
-     * @param kohde Kohde minne nappulaa yritetään siirtää
-     * @return palauttaa pystyykö reitillä siirtymään suoraan
+     * 
+     * Selvittää onko siirtymisen tiellä muita nappuloita, ei käytetä ratsulle.
+     * 
+     * @param n Nappula jota halutaan siirtää.
+     * @param kohde Kohde minne nappulaa yritetään siirtää.
+     * @return palauttaa pystyykö reitillä siirtymään suoraan.
      *
-     * Selvittää onko siirtymisen tiellä muita nappuloita, ei käytetä ratsulle
      */
     public boolean onkoReitti(Nappula n, Sijainti kohde) {
         Sijainti uus = new Sijainti(kohde.getX(), kohde.getY());
@@ -106,33 +103,35 @@ public class Lauta {
     }
 
     /**
+     * 
+     * Käytetään vain apuna konstruktorissa, täyttää rivin erilaisilla
+     * nappuloilla tai sotilailla jos ei ole päätyrivi.
+     * 
      * @param aloitusX Rivi jolle täytetään nappulat
      * @param vari Pelaaja jolle nappulat annetaan
      * @param kohta Kertoo mihin nappula tulee rivillä laittaa
      *
-     * Käytetään vain apuna konstruktorissa, täyttää rivin erilaisilla
-     * nappuloilla tai sotilailla jos ei ole päätyrivi
      */
     private void alustusApu(int aloitusX, boolean vari, int kohta) {
         int i = 0;
         if (aloitusX == 0 || aloitusX == 7) {
-            lauta[kohta++] = new Torni(aloitusX, i++, vari, TORNI);
-            lauta[kohta++] = new Ratsu(aloitusX, i++, vari, RATSU);
-            lauta[kohta++] = new Lahetti(aloitusX, i++, vari, LAHETTI);
-            lauta[kohta++] = new Kuningatar(aloitusX, i++, vari, KUNINGATAR);
-            lauta[kohta++] = new Kuningas(aloitusX, i++, vari, KUNINGAS);
-            lauta[kohta++] = new Lahetti(aloitusX, i++, vari, LAHETTI);
-            lauta[kohta++] = new Ratsu(aloitusX, i++, vari, RATSU);
-            lauta[kohta++] = new Torni(aloitusX, i++, vari, TORNI);
+            lauta[kohta++] = new Torni(aloitusX, i++, vari);
+            lauta[kohta++] = new Ratsu(aloitusX, i++, vari);
+            lauta[kohta++] = new Lahetti(aloitusX, i++, vari);
+            lauta[kohta++] = new Kuningatar(aloitusX, i++, vari);
+            lauta[kohta++] = new Kuningas(aloitusX, i++, vari);
+            lauta[kohta++] = new Lahetti(aloitusX, i++, vari);
+            lauta[kohta++] = new Ratsu(aloitusX, i++, vari);
+            lauta[kohta++] = new Torni(aloitusX, i++, vari);
         } else {
             for (i = 0; i < lauta.length / 4; i++) {
-                lauta[kohta++] = new Sotilas(aloitusX, i, vari, SOTILAS);
+                lauta[kohta++] = new Sotilas(aloitusX, i, vari);
             }
         }
     }
 
     /**
-     * Tulostaa laudan tilanteen
+     * Tulostaa laudan tilanteen.
      */
     public void piirraLauta() {
         String[][] piirros = new String[8][8];
@@ -158,9 +157,11 @@ public class Lauta {
     }
 
     /**
+     * 
+     * Poistaa nappulan laudalta ja pienentää nappulalistaa
+     * 
      * @param s Mistä kohdin lautaa poistetaan nappula
      *
-     * Poistaa nappulan laudalta ja pienentää nappulalistaa
      */
     private void syo(int s) { //Kirjoitetaan tarvittaessa omalla
         Nappula[] uus = new Nappula[lauta.length - 1];

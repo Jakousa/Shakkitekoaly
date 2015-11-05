@@ -1,3 +1,10 @@
+/**
+ * Abstrakti luokka pitää sisällään metodeja kuten siirtmistarkastelua jotka muuten
+ * täytyisi toistaa jokaiselle (6) nappulalle erikseen.
+ * 
+ * Sisältää sijainnin, nappulan tyypin ja värin.
+ */
+
 package shakkitekoaly.nappula;
 
 import java.util.Objects;
@@ -7,6 +14,13 @@ public abstract class Nappula {
     private Tyyppi tyyppi;
     private boolean vari;
     
+    /**
+     * Konstruktori luo uuden sijainnin nappulalle annetuista x ja y arvoista.
+     * @param x Sijaintiin laudalla.
+     * @param y Sijaintiin laudalla.
+     * @param vari Pelaaja jolle nappula kuuluu.
+     * @param tyyppi Nappulan tyyppi (Torni, Sotilas, jne.)
+     */
     public Nappula(int x, int y, boolean vari, Tyyppi tyyppi) {
         this.sijainti = new Sijainti(x, y);
         this.vari = vari;
@@ -29,6 +43,16 @@ public abstract class Nappula {
         this.sijainti = s;
     }
     
+    /**
+     * 
+     * Tarkistaa onko siirtyminen mahdollista laudan rajojen mukaan ja vielä
+     * kutsuu okSiirtya(lahto, kohde) jotta saadaan nappulakohtaiset säännöt ja
+     * voiko niiden mukaan siirtyä.
+     * 
+     * @param lahto Mistä halutaan siirtyä
+     * @param kohde Minne halutaan siirtyä
+     * @return Palauttaa tosi jos siirtyminen on mahdollista, muuten epätosi.
+     */
     public boolean siirry(Sijainti lahto, Sijainti kohde){
         if (kohde.getX() > 7 || kohde.getX() < 0 ||
                 kohde.getY() > 7 || kohde.getY() < 0 || 
@@ -41,10 +65,27 @@ public abstract class Nappula {
         return false;
     }
     
+    /**
+     * Tarkistaa onko siirto mahdollinen nappulan sääntöjen mukaan, ei tarkista
+     * laudan sääntöjä.
+     * 
+     * @param lahto Mistä halutaan siirtyä.
+     * @param kohde Minne halutaan siirtyä.
+     * @return Palauttaa tosi jos siirtyminen on mahdollista. Muuten epätosi.
+     */
     public abstract boolean okSiirtya(Sijainti lahto, Sijainti kohde);
     
+    /**
+     * Jokaisella nappulalla oma "kuva" joka toteutetaan
+     * @return Palauttaa nappulan "kuvan".
+     */
     public abstract String piirra();
     
+    /**
+     * Tarkistetaan onko nappula sama kuin toinen nappula.
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj) {
         return obj.hashCode() == this.hashCode();
