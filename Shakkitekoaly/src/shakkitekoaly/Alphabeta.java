@@ -6,36 +6,71 @@
 
 package shakkitekoaly;
 
-import shakkitekoaly.nappula.Nappula;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import shakkitekoaly.nappula.*;
 
 public class Alphabeta {
 
-    private Lauta lauta;
     private int syvyys;
     private boolean pelaaja;
 
-    public Alphabeta(Lauta lauta, boolean pelaaja, int syvyys) {
-        this.lauta = lauta;
+    public Alphabeta(boolean pelaaja, int syvyys) {
         this.pelaaja = pelaaja;
         this.syvyys = syvyys;
-    }
-
-    public Lauta getLauta() {
-        return lauta;
     }
 
     public boolean isPelaaja() {
         return pelaaja;
     }
     
-    
-    
     /**
      * Siirtää nappulaa laudalla tekemänsä arvion mukaan
      * 
+     * @param lauta
+     * @param alpha
+     * @param beta
+     * @param syvyys
+     * @param vuorossa
+     * @return 
      */
-    public void teeSiirto() {
-        
+    public int alphaBeta(Nappula[] nappulat, int alpha, int beta, 
+            int syvyys, boolean vuorossa) {
+        int tilanne = arvioiLauta(nappulat);
+        if (syvyys == 0 || 
+                tilanne == Integer.MAX_VALUE || tilanne == Integer.MIN_VALUE) {
+            return tilanne;
+        }
+        if (vuorossa) { // Ehkä pitäisi olla vuorossa == pelaaja
+            int v = Integer.MIN_VALUE;
+            for (int i = 0; i < nappulat.length; i++) {
+                Nappula n = nappulat[i];
+                if (n.getVari() == vuorossa) {
+                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(i, nappulat)) {
+                        v = Math.max(v, arvioiLauta(nappulanSiirrot));
+                        alpha = Math.max(alpha, v);
+                        if (beta <= alpha) {
+                            return v;
+                        }
+                    }
+                }
+            }
+        } else {
+            int v = Integer.MAX_VALUE;
+            for (int i = 0; i < nappulat.length; i++) {
+                Nappula n = nappulat[i];
+                if (n.getVari() != vuorossa) {
+                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(i, nappulat)) {
+                        v = Math.min(v, arvioiLauta(nappulanSiirrot));
+                        alpha = Math.min(alpha, v);
+                        if (beta <= alpha) {
+                            return v;
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
     }
 
     /**
@@ -43,7 +78,7 @@ public class Alphabeta {
      * Palauttaa suuren luvun jos tilanne arvioidaan hyväksi ja pienemmän jos
      * tilanne on huonompi.
      * 
-     * @param l Lista nappuloita eli lauta jota halutaan arvioida
+     * @param l Lista nappuloita eli laudan tilanne jota halutaan arvioida
      * @return palauttaa tehdyn arvion laudasta kokonaislukuna
      */
     public int arvioiLauta(Nappula[] l) {
@@ -69,5 +104,27 @@ public class Alphabeta {
             }
         }
         return v;
+    }
+
+    private Deque<Nappula[]> nappulanSiirrot(int sijaintiLaudalla, Nappula[] n){
+        Deque<Nappula[]> pino = new ArrayDeque<Nappula[]>();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Nappula[] siirto = haeSiirto(new Sijainti(i, j), n, sijaintiLaudalla);
+                if (siirto != null) {
+                    pino.add(siirto);
+                }
+            }
+        }
+        return pino;
+    }
+    
+    private Nappula[] haeSiirto(Sijainti s, Nappula[] nappulat, int sijaintiLaudalla) {
+        Nappula[] palautetaan = null;
+        Lauta siirretty = new Lauta(nappulat);
+        if (siirretty.siirraNappulaa(siirretty.getNappulat()[sijaintiLaudalla], s)) {
+            palautetaan = siirretty.getNappulat();
+        }
+        return palautetaan;
     }
 }

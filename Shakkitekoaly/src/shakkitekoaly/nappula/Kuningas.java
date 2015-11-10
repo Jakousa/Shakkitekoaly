@@ -7,8 +7,8 @@ import static shakkitekoaly.nappula.Tyyppi.KUNINGAS;
 
 public class Kuningas extends Nappula {
 
-    public Kuningas(int x, int y, boolean vari) {
-        super(x, y, vari, KUNINGAS);
+    public Kuningas(Sijainti s, boolean vari) {
+        super(s, vari, KUNINGAS);
     }
 
     @Override

@@ -1,13 +1,18 @@
 /**
- * 
+ *
  */
 package shakkitekoaly.nappula;
 
 public class Sijainti {
+
     private int x;
     private int y;
-    
+
     public Sijainti(int x, int y) {
+        if (x > 7 || x < 0 || y < 0 || y > 7) {
+            System.out.println("Sijainnin on oltava kentän sisällä.");
+            throw new IllegalArgumentException("Valitse uusi sijainti kentän sisältä.");
+        }
         this.x = x;
         this.y = y;
     }
@@ -27,9 +32,9 @@ public class Sijainti {
     public void setY(int y) {
         this.y = y;
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (o.getClass() != this.getClass()) {
             return false;
         }

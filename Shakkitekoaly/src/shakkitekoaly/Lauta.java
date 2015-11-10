@@ -4,6 +4,7 @@
  */
 package shakkitekoaly;
 
+import java.util.Arrays;
 import shakkitekoaly.nappula.*;
 import static shakkitekoaly.nappula.Tyyppi.*;
 
@@ -20,6 +21,43 @@ public class Lauta {
         alustusApu(1, false, 8);
         alustusApu(7, true, 16);
         alustusApu(6, true, 24);
+    }
+    
+    /**
+     * Toinen konstruktori laudan kopiointia varten. Tätä käytetään hyödyksi
+     * tekoälyn käydessä siirtoja läpi.
+     * @param nappulat Nappulatilanne joka halutaan laudalle.
+     */
+    public Lauta(Nappula[] nappulat) {
+        this.lauta = new Nappula[nappulat.length];
+        
+        for (int i = 0; i < lauta.length; i++) {
+            Nappula n = nappulat[i];
+            switch (n.getTyyppi()) {
+                case SOTILAS: this.lauta[i] = new Sotilas(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+                case KUNINGAS: this.lauta[i] = new Kuningas(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+                case KUNINGATAR: this.lauta[i] = new Kuningatar(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+                case LAHETTI: this.lauta[i] = new Lahetti(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+                case RATSU: this.lauta[i] = new Ratsu(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+                case TORNI: this.lauta[i] = new Torni(new Sijainti(
+                n.getSijainti().getX(), n.getSijainti().getY()), n.getVari());
+                    break;
+            }
+        }
+    }
+    
+    public void setNappulat(Nappula[] nappulaTilanne) {
+        this.lauta = nappulaTilanne;
     }
 
     public Nappula[] getNappulat() {
@@ -62,6 +100,7 @@ public class Lauta {
                 return false;
             }
             n.setSijainti(kohde);
+            return true;
         }
         return false;
     }
@@ -115,17 +154,17 @@ public class Lauta {
     private void alustusApu(int aloitusX, boolean vari, int kohta) {
         int i = 0;
         if (aloitusX == 0 || aloitusX == 7) {
-            lauta[kohta++] = new Torni(aloitusX, i++, vari);
-            lauta[kohta++] = new Ratsu(aloitusX, i++, vari);
-            lauta[kohta++] = new Lahetti(aloitusX, i++, vari);
-            lauta[kohta++] = new Kuningatar(aloitusX, i++, vari);
-            lauta[kohta++] = new Kuningas(aloitusX, i++, vari);
-            lauta[kohta++] = new Lahetti(aloitusX, i++, vari);
-            lauta[kohta++] = new Ratsu(aloitusX, i++, vari);
-            lauta[kohta++] = new Torni(aloitusX, i++, vari);
+            lauta[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Kuningatar(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Kuningas(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
+            lauta[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
         } else {
             for (i = 0; i < lauta.length / 4; i++) {
-                lauta[kohta++] = new Sotilas(aloitusX, i, vari);
+                lauta[kohta++] = new Sotilas(new Sijainti(aloitusX, i), vari);
             }
         }
     }

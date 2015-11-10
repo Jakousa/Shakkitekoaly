@@ -4,21 +4,38 @@
  */
 package shakkitekoaly;
 
+import java.util.*;
 import shakkitekoaly.nappula.*;
 
 public class Shakkitekoaly {
 
     public static void main(String[] args) {
+        Deque<Nappula[]> pino = new ArrayDeque<Nappula[]>();
+        Lauta lauta = new Lauta();
+        
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Nappula[] siirto = haeSiirto(new Sijainti(i, j), lauta, 11);
+                if (siirto != null) {
+                    pino.add(siirto);
+                }
+            }
+        }
+        for (Nappula[] pino1 : pino) {
+            lauta.setNappulat(pino1);
+            lauta.piirraLauta();
+            System.out.println("");
+        }
+    }
 
-        Alphabeta l = new Alphabeta(new Lauta(), true, 2);
-
-        Nappula[] lauta = new Nappula[1];
-        lauta[0] = new Torni(3, 3, true);
-        int v = l.arvioiLauta(lauta);
-        lauta = new Nappula[2];
-        lauta[0] = new Torni(3, 3, true);
-        lauta[1] = new Torni(3, 4, false);
-        int j = l.arvioiLauta(lauta);
-        System.out.println(v + " = v  ja j = " + j);
+    
+    // Kopiointi....
+    public static Nappula[] haeSiirto(Sijainti s, Lauta l, int listasta) {
+        Nappula[] palautetaan = null;
+        Lauta siirretty = new Lauta(l.getNappulat());
+        if (siirretty.siirraNappulaa(siirretty.getNappulat()[listasta], s)) {
+            palautetaan = siirretty.getNappulat();
+        }
+        return palautetaan;
     }
 }

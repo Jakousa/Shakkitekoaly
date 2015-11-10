@@ -7,8 +7,8 @@ import static shakkitekoaly.nappula.Tyyppi.TORNI;
 
 public class Torni extends Nappula {
 
-    public Torni(int x, int y, boolean vari) {
-        super(x, y, vari, TORNI);
+    public Torni(Sijainti s, boolean vari) {
+        super(s, vari, TORNI);
     }
 
     @Override

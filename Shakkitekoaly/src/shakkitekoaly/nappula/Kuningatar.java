@@ -7,8 +7,8 @@ import static shakkitekoaly.nappula.Tyyppi.KUNINGATAR;
 
 public class Kuningatar extends Nappula {
 
-    public Kuningatar(int x, int y, boolean vari) {
-        super(x, y, vari, KUNINGATAR);
+    public Kuningatar(Sijainti s, boolean vari) {
+        super(s, vari, KUNINGATAR);
     }
 
     @Override

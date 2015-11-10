@@ -7,8 +7,8 @@ import static shakkitekoaly.nappula.Tyyppi.RATSU;
 
 public class Ratsu extends Nappula {
 
-    public Ratsu(int x, int y, boolean vari) {
-        super(x, y, vari, RATSU);
+    public Ratsu(Sijainti s, boolean vari) {
+        super(s, vari, RATSU);
     }
 
     @Override
@@ -17,6 +17,7 @@ public class Ratsu extends Nappula {
         int x2 = kohde.getX();
         int y1 = lahto.getY();
         int y2 = kohde.getY();
+        
         return (Math.abs(x1 - x2) == 2 && Math.abs(y1 - y2) == 1)
                 || (Math.abs(x1 - x2) == 1 && Math.abs(y1 - y2) == 2);
     }

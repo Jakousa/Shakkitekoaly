@@ -16,17 +16,12 @@ public abstract class Nappula {
     
     /**
      * Konstruktori luo uuden sijainnin nappulalle annetuista x ja y arvoista.
-     * @param x Sijaintiin laudalla.
-     * @param y Sijaintiin laudalla.
+     * @param s Sijaintiin laudalla.
      * @param vari Pelaaja jolle nappula kuuluu.
      * @param tyyppi Nappulan tyyppi (Torni, Sotilas, jne.)
      */
-    public Nappula(int x, int y, boolean vari, Tyyppi tyyppi) {
-        if (x > 7 || x < 0 || y < 0 || y > 7) {
-            System.out.println("Yritettiin luoda nappula kentän ulkopuolelle");
-            throw new IllegalArgumentException("Luo nappula kentän sisälle");
-        }
-        this.sijainti = new Sijainti(x, y);
+    public Nappula(Sijainti s, boolean vari, Tyyppi tyyppi) {
+        this.sijainti = s;
         this.vari = vari;
         this.tyyppi = tyyppi;
     }

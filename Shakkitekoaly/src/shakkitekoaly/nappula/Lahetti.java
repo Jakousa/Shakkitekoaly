@@ -7,8 +7,8 @@ import static shakkitekoaly.nappula.Tyyppi.LAHETTI;
 
 public class Lahetti extends Nappula {
 
-    public Lahetti(int x, int y, boolean vari) {
-        super(x, y, vari, LAHETTI);
+    public Lahetti(Sijainti s, boolean vari) {
+        super(s, vari, LAHETTI);
     }
 
     /**

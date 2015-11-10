@@ -19,17 +19,17 @@ import shakkitekoaly.nappula.*;
  */
 public class AlphabetaTest {
     
-    Alphabeta l = new Alphabeta(new Lauta(), true, 2);
+    Alphabeta l = new Alphabeta(true, 2);
     
     @Test
     public void arviointiMuutos(){
         Nappula[] lauta = new Nappula[1];
-        lauta[0] = new Torni(3, 3, true);
+        lauta[0] = new Torni(new Sijainti(3, 3), true);
         int v = l.arvioiLauta(lauta);
         
         lauta = new Nappula[2];
-        lauta[0] = new Torni(3, 3, true);
-        lauta[1] = new Torni(3, 4, false);
+        lauta[0] = new Torni(new Sijainti(3, 3), true);
+        lauta[1] = new Torni(new Sijainti(3, 4), false);
         int j = l.arvioiLauta(lauta);
         
         assertTrue(v > j);
