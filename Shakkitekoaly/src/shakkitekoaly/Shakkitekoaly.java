@@ -4,38 +4,25 @@
  */
 package shakkitekoaly;
 
-import java.util.*;
 import shakkitekoaly.nappula.*;
 
 public class Shakkitekoaly {
 
     public static void main(String[] args) {
-        Deque<Nappula[]> pino = new ArrayDeque<Nappula[]>();
-        Lauta lauta = new Lauta();
-        
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Nappula[] siirto = haeSiirto(new Sijainti(i, j), lauta, 11);
-                if (siirto != null) {
-                    pino.add(siirto);
-                }
-            }
-        }
-        for (Nappula[] pino1 : pino) {
-            lauta.setNappulat(pino1);
-            lauta.piirraLauta();
-            System.out.println("");
-        }
-    }
+        Alphabeta t = new Alphabeta(true, 3);
+        Alphabeta v = new Alphabeta(false, 2);
+        Lauta l = new Lauta();
 
-    
-    // Kopiointi....
-    public static Nappula[] haeSiirto(Sijainti s, Lauta l, int listasta) {
-        Nappula[] palautetaan = null;
-        Lauta siirretty = new Lauta(l.getNappulat());
-        if (siirretty.siirraNappulaa(siirretty.getNappulat()[listasta], s)) {
-            palautetaan = siirretty.getNappulat();
+        l.piirraLauta();
+        while (t.arvioiLauta(l.getNappulat()) < 10000
+                && t.arvioiLauta(l.getNappulat()) > -10000) {
+            t.teeSiirto(l);
+            v.teeSiirto(l);
+            System.out.println("");
+            l.piirraLauta();
+            
+            System.out.println("t: " + t.arvioiLauta(l.getNappulat()));
+            System.out.println("v: " + v.arvioiLauta(l.getNappulat()));
         }
-        return palautetaan;
     }
 }
