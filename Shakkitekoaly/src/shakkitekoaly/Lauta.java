@@ -69,6 +69,10 @@ public class Lauta {
         }
     }
     
+    /**
+     * Asettaa laudalle nappulat
+     * @param nappulaTilanne Nappulat listassa kuten ne halutaan laudalle
+     */
     public void setNappulat(Nappula[] nappulaTilanne) {
         this.lauta = nappulaTilanne;
     }

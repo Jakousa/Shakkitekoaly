@@ -14,12 +14,18 @@ public class Alphabeta {
     private int montaSiirtoa;
     private boolean pelaaja;
 
+    /**
+     * 
+     * @param pelaaja Pelaaja jonka vuorolla Alphabeta pelaa.
+     * @param syvyys Kuinka monta vuoroa eteenpäin algoritmi arvioi.
+     */
+    
     public Alphabeta(boolean pelaaja, int syvyys) {
         this.pelaaja = pelaaja;
         this.montaSiirtoa = syvyys;
     }
 
-    public boolean isPelaaja() {
+    public boolean getPelaaja() {
         return pelaaja;
     }
 
@@ -59,8 +65,8 @@ public class Alphabeta {
      * Arvioi laudan mahdollisia siirtoja Alpha-beta algoritmin mukaan
      *
      * @param nappulat Laudan tilanne
-     * @param alpha
-     * @param beta
+     * @param alpha 
+     * @param beta 
      * @param syvyys Kuinka monta siirtoa etsitään
      * @param vuorossa Pelaaja jonka vuoro on
      * @return Palauttaa parhaimman arvion
@@ -143,6 +149,15 @@ public class Alphabeta {
         }
         return v;
     }
+    
+    /**
+     * Käy läpi nappulan siirrot kutsumalla haeSiirrot mahdolliselle siirrolle 
+     * ja lisää pinoon jos siirto oli olemassa.
+     * Ei käytetä kuin alphaBetassa.
+     * @param sijaintiLaudalla Nappulan sijainti nappulalistassa
+     * @param n Nappulalista
+     * @return Palauttaa pinon mahdollisia siirtoja nappulalle
+     */
 
     private Deque<Nappula[]> nappulanSiirrot(int sijaintiLaudalla, Nappula[] n) {
         Deque<Nappula[]> pino = new ArrayDeque<Nappula[]>();
@@ -157,6 +172,13 @@ public class Alphabeta {
         return pino;
     }
 
+    /**
+     * Tarkistaa onko siirto mahdollinen. Ei käytetä kuin nappulanSiirron apuna
+     * @param s Sijainti laudalla josta nappulaa halutaan siirtää
+     * @param nappulat Laudalla olevien nappuloiden lista
+     * @param sijaintiLaudalla Nappulan sijainti nappulat jonossa
+     * @return Palauttaa uuden tilanteen nappulat jos siirto oli mahdollinen
+     */
     private Nappula[] haeSiirto(Sijainti s, Nappula[] nappulat, int sijaintiLaudalla) {
         Nappula[] palautetaan = null;
         Lauta siirretty = new Lauta(nappulat);

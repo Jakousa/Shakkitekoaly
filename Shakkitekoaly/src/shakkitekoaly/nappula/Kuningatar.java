@@ -11,6 +11,12 @@ public class Kuningatar extends Nappula {
         super(s, vari, KUNINGATAR);
     }
 
+    /**
+     * Kertoo onko liikkuminen mahdollista nappulan sääntöjen mukaan.
+     * @param lahto Mistä halutaan siirtyä.
+     * @param kohde Minne halutaan siirtyä.
+     * @return Palauttaa tosi jos siirtyminen on mahdollista, muuten epätosi.
+     */
     @Override
     public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
         return (Math.abs(lahto.getX() - kohde.getX())
@@ -18,6 +24,10 @@ public class Kuningatar extends Nappula {
                 (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY());
     }
 
+    /**
+     * Jokaisella nappulalla on eri merkki.
+     * @return Palauttaa nappulan kuvan.
+     */
     @Override
     public String piirra() {
         if (this.getVari()) {
