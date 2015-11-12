@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package shakkitekoaly.nappula;
 
@@ -13,9 +13,9 @@ public class Kuningatar extends Nappula {
 
     @Override
     public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
-        return ((Math.abs(lahto.getX() - kohde.getX()) == 
-                Math.abs(lahto.getY() - kohde.getY())) && 
-                (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY()));
+        return (Math.abs(lahto.getX() - kohde.getX())
+                == Math.abs(lahto.getY() - kohde.getY())) ||
+                (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY());
     }
 
     @Override
@@ -23,6 +23,7 @@ public class Kuningatar extends Nappula {
         if (this.getVari()) {
             return "Q";
         }
-        return "q";    }
-    
+        return "q";
+    }
+
 }

@@ -18,8 +18,30 @@ import static org.junit.Assert.*;
  */
 public class SotilasTest {
     
+    Nappula s = new Sotilas(new Sijainti(3,3), true);
+    Nappula sV = new Sotilas(new Sijainti(4,4), false);
+    
         @Test
-    public void placeHolder() {
-        assertTrue(true);
+    public void siirtyminenOikein() {
+        assertTrue(s.okSiirtya(s.getSijainti(), new Sijainti(2,2)));
+        assertTrue(s.okSiirtya(s.getSijainti(), new Sijainti(2,3)));
+        assertTrue(s.okSiirtya(s.getSijainti(), new Sijainti(2,4)));
+        
+        assertTrue(sV.okSiirtya(sV.getSijainti(), new Sijainti(5,3)));
+        assertTrue(sV.okSiirtya(sV.getSijainti(), new Sijainti(5,4)));
+        assertTrue(sV.okSiirtya(sV.getSijainti(), new Sijainti(5,5)));
+    }
+    
+        @Test
+    public void piirtoOikein() {
+        String st = null;
+        st = s.piirra();
+        assertTrue(st != null);
+        Nappula vK = new Sotilas(new Sijainti(1,1), false);
+        String h = null;
+        h = vK.piirra();
+        assertTrue(h != null);
+        
+        assertTrue(!h.equals(st));
     }
 }

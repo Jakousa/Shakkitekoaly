@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import shakkitekoaly.Lauta;
 
 /**
  *
@@ -18,8 +19,32 @@ import static org.junit.Assert.*;
  */
 public class KuningasTest {
     
+    Nappula k = new Kuningas(new Sijainti(4,4), true);
+    
         @Test
-    public void placeHolder() {
-        assertTrue(true);
+    public void siirtyminenOikein() {
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(3,4)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(5,4)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(4,3)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(4,5)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(3,3)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(5,5)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(3,5)));
+        assertTrue(k.okSiirtya(k.getSijainti(), new Sijainti(5,3)));
     }
+    
+    @Test
+    public void piirtoOikein() {
+        String s = null;
+        s = k.piirra();
+        assertTrue(s != null);
+        Nappula vK = new Kuningas(new Sijainti(1,1), false);
+        String h = null;
+        h = vK.piirra();
+        assertTrue(h != null);
+        
+        assertTrue(!h.equals(s));
+    }
+    
+    
 }

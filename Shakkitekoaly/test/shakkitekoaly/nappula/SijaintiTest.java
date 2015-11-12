@@ -22,4 +22,5 @@ public class SijaintiTest {
     public void placeHolder() {
         assertTrue(true);
     }
+    
 }

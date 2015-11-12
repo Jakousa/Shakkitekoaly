@@ -18,21 +18,7 @@ import static shakkitekoaly.nappula.Tyyppi.*;
  * @author hatchy
  */
 public class NappulaTest {
-    
-    @Test
-    public void laudanRajat() {
-        Nappula n = new Kuningatar(new Sijainti(5,5),true);
-        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(8,5))));
-        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(5,8))));
-        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(-1,5))));
-        assertTrue(!(n.siirry(n.getSijainti(), new Sijainti(5,-1))));
-        
-//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(5,0)));
-//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(0,5)));
-//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(5,7)));
-//        assertTrue(n.siirry(n.getSijainti(), new Sijainti(7,5)));
-        
-    }
+
     @Test
     public void equalsTesti() {
         Nappula n = new Kuningas(new Sijainti(0,0),true);

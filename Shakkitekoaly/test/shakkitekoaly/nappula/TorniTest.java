@@ -17,9 +17,27 @@ import static org.junit.Assert.*;
  * @author hatchy
  */
 public class TorniTest {
-    
-        @Test
-    public void placeHolder() {
-        assertTrue(true);
+
+    Nappula t = new Torni(new Sijainti(4, 4), true);
+
+    @Test
+    public void siirtyminenOikein() {
+        assertTrue(t.okSiirtya(t.getSijainti(), new Sijainti(2,4)));
+        assertTrue(t.okSiirtya(t.getSijainti(), new Sijainti(6,4)));
+        assertTrue(t.okSiirtya(t.getSijainti(), new Sijainti(4,2)));
+        assertTrue(t.okSiirtya(t.getSijainti(), new Sijainti(4,6)));
+    }
+
+    @Test
+    public void piirtoOikein() {
+        String s = null;
+        s = t.piirra();
+        assertTrue(s != null);
+        Nappula vK = new Torni(new Sijainti(1, 1), false);
+        String h = null;
+        h = vK.piirra();
+        assertTrue(h != null);
+
+        assertTrue(!h.equals(s));
     }
 }

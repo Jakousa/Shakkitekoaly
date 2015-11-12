@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import shakkitekoaly.Lauta;
 
 /**
  *
@@ -18,8 +19,30 @@ import static org.junit.Assert.*;
  */
 public class RatsuTest {
     
+    Nappula r = new Ratsu(new Sijainti(4,4), true);
+    
+    @Test
+    public void siirtyminenOikein() {
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(5,6)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(5,2)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(3,6)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(3,2)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(6,5)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(2,5)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(6,3)));
+        assertTrue(r.okSiirtya(r.getSijainti(), new Sijainti(2,3)));
+    }
+    
         @Test
-    public void placeHolder() {
-        assertTrue(true);
+    public void piirtoOikein() {
+        String s = null;
+        s = r.piirra();
+        assertTrue(s != null);
+        Nappula vK = new Ratsu(new Sijainti(1,1), false);
+        String h = null;
+        h = vK.piirra();
+        assertTrue(h != null);
+        
+        assertTrue(!h.equals(s));
     }
 }
