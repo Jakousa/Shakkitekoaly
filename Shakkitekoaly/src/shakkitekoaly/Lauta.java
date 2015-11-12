@@ -16,11 +16,24 @@ public class Lauta {
      * Nappulat luodaan konstruktorin aikana.
      */
     public Lauta() {
-        lauta = new Nappula[16 * 2];
-        alustusApu(0, false, 0);
-        alustusApu(1, false, 8);
-        alustusApu(7, true, 16);
-        alustusApu(6, true, 24);
+        Nappula[] nappulat = new Nappula[16 * 2];
+        alusta(nappulat);
+        this.lauta = nappulat;
+    }
+    
+    /**
+     * Tehdessä uutta lautaa nappulat laitetaan shakissa perinteisille paikoille
+     * Toimii konstruktorin apuna.
+     * 
+     * @param n Lauta jolle nappulat halutaan laittaa
+     */
+    
+    private void alusta(Nappula[] n){
+        int kohta = 0;
+        kohta = alustusApu(0, false, kohta, n);
+        kohta = alustusApu(1, false, kohta, n);
+        kohta = alustusApu(7, true, kohta, n);
+        alustusApu(6, true, kohta, n);
     }
     
     /**
@@ -151,22 +164,23 @@ public class Lauta {
      * @param kohta Kertoo mihin nappula tulee rivillä laittaa
      *
      */
-    private void alustusApu(int aloitusX, boolean vari, int kohta) {
+    private int alustusApu(int aloitusX, boolean vari, int kohta, Nappula[] l) {
         int i = 0;
         if (aloitusX == 0 || aloitusX == 7) {
-            lauta[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Kuningatar(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Kuningas(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
-            lauta[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Kuningatar(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Kuningas(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
+            l[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
         } else {
-            for (i = 0; i < lauta.length / 4; i++) {
-                lauta[kohta++] = new Sotilas(new Sijainti(aloitusX, i), vari);
+            for (i = 0; i < l.length / 4; i++) {
+                l[kohta++] = new Sotilas(new Sijainti(aloitusX, i), vari);
             }
         }
+        return kohta;
     }
 
     /**

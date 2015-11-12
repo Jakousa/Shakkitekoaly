@@ -9,6 +9,8 @@ import shakkitekoaly.nappula.*;
 public class Shakkitekoaly {
 
     public static void main(String[] args) {
+        
+        //Testikoodia ja muuta keskeneräistä
         Alphabeta t = new Alphabeta(true, 3);
         Alphabeta v = new Alphabeta(false, 2);
         Lauta l = new Lauta();

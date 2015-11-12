@@ -21,7 +21,7 @@ public class LautaTest {
     Lauta l = new Lauta();
     
     @Test
-    public void alustetaanOikein(){
+    public void tyhjaLautaAlustetaanOikein(){
         assertTrue(l.getNappulat().length == (8*4));
     }
     

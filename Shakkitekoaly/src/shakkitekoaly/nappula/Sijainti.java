@@ -10,11 +10,11 @@ public class Sijainti {
 
     public Sijainti(int x, int y) {
         if (x > 7 || x < 0 || y < 0 || y > 7) {
-            System.out.println("Sijainnin on oltava kentän sisällä.");
-            throw new IllegalArgumentException("Valitse uusi sijainti kentän sisältä.");
+            throw new IllegalArgumentException("Yritettiin luoda sijaintia kentän ulkopuolelle");
+        } else {
+            this.x = x;
+            this.y = y;
         }
-        this.x = x;
-        this.y = y;
     }
 
     public int getX() {
