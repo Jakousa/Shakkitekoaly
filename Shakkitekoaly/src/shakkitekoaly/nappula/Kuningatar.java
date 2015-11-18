@@ -29,11 +29,11 @@ public class Kuningatar extends Nappula {
      * @return Palauttaa nappulan kuvan.
      */
     @Override
-    public String piirra() {
+    public char piirra() {
         if (this.getVari()) {
-            return "Q";
+            return 'Q';
         }
-        return "q";
+        return 'q';
     }
 
 }

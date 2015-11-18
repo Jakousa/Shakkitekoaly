@@ -30,11 +30,11 @@ public class Torni extends Nappula {
      * @return Palauttaa nappulan kuvan.
      */
     @Override
-    public String piirra() {
+    public char piirra() {
         if (this.getVari()) {
-            return "T";
+            return 'T';
         }
-            return "t";
+            return 't';
         
     }
     

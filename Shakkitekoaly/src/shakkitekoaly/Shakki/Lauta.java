@@ -2,7 +2,7 @@
  *
  * Lauta huolehtii nappuloista ja niiden siirtämisestä.
  */
-package shakkitekoaly;
+package shakkitekoaly.Shakki;
 
 import java.util.Arrays;
 import shakkitekoaly.nappula.*;
@@ -191,11 +191,11 @@ public class Lauta {
      * Tulostaa laudan tilanteen.
      */
     public void piirraLauta() {
-        String[][] piirros = new String[8][8];
+        char[][] piirros = new char[9][9];
         for (int i = 0; i < piirros.length; i++) {
-            String[] piirro = piirros[i];
+            char[] piirro = piirros[i];
             for (int j = 0; j < piirro.length; j++) {
-                piirro[j] = "#";
+                piirro[j] = '#';
             }
         }
         for (int i = 0; i < lauta.length; i++) {
@@ -204,8 +204,16 @@ public class Lauta {
             int y = nappula.getSijainti().getY();
             piirros[x][y] = nappula.piirra();
         }
+        for (int i = 0; i < piirros.length-1; i++) {
+            char[] piirro = piirros[i];
+            piirro[8] = (char) (i+48);
+        }
+        for (int i = 0; i < piirros[8].length-1; i++) {
+            piirros[8][i] = (char) (i+97);
+        }
+        piirros[8][8] = '*';
         for (int i = 0; i < piirros.length; i++) {
-            String[] piirro = piirros[i];
+            char[] piirro = piirros[i];
             for (int j = 0; j < piirro.length; j++) {
                 System.out.print(piirro[j]);
             }

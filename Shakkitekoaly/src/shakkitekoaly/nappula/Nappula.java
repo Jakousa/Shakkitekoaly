@@ -75,7 +75,7 @@ public abstract class Nappula {
      *
      * @return Palauttaa nappulan "kuvan".
      */
-    public abstract String piirra();
+    public abstract char piirra();
 
     /**
      * Tarkistetaan onko nappula sama kuin toinen nappula.

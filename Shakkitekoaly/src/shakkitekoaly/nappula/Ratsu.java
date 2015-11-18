@@ -35,11 +35,11 @@ public class Ratsu extends Nappula {
      * @return Palauttaa nappulan kuvan.
      */
     @Override
-    public String piirra() {
+    public char piirra() {
         if (this.getVari()) {
-            return "R";
+            return 'R';
         }
-        return "r";
+        return 'r';
 
     }
 

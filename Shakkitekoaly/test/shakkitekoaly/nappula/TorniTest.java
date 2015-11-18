@@ -30,14 +30,14 @@ public class TorniTest {
 
     @Test
     public void piirtoOikein() {
-        String s = null;
+        char s = '0';
         s = t.piirra();
-        assertTrue(s != null);
+        assertTrue(s != '0');
         Nappula vK = new Torni(new Sijainti(1, 1), false);
-        String h = null;
+        char h = '0';
         h = vK.piirra();
-        assertTrue(h != null);
+        assertTrue(h != '0');
 
-        assertTrue(!h.equals(s));
+        assertTrue(!(h == s));
     }
 }

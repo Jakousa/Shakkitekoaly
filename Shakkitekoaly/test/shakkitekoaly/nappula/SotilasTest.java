@@ -34,14 +34,14 @@ public class SotilasTest {
     
         @Test
     public void piirtoOikein() {
-        String st = null;
+        char st = '0';
         st = s.piirra();
-        assertTrue(st != null);
+        assertTrue(st != '0');
         Nappula vK = new Sotilas(new Sijainti(1,1), false);
-        String h = null;
+        char h = '0';
         h = vK.piirra();
-        assertTrue(h != null);
+        assertTrue(h != '0');
         
-        assertTrue(!h.equals(st));
+        assertTrue(!(h == st));
     }
 }

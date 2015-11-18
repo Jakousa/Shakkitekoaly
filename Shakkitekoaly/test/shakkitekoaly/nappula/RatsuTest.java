@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import shakkitekoaly.Lauta;
+import shakkitekoaly.Shakki.Lauta;
 
 /**
  *
@@ -35,14 +35,14 @@ public class RatsuTest {
     
         @Test
     public void piirtoOikein() {
-        String s = null;
+        char s = '0';
         s = r.piirra();
-        assertTrue(s != null);
+        assertTrue(s != '0');
         Nappula vK = new Ratsu(new Sijainti(1,1), false);
-        String h = null;
+        char h = '0';
         h = vK.piirra();
-        assertTrue(h != null);
+        assertTrue(h != '0');
         
-        assertTrue(!h.equals(s));
+        assertTrue(!(h == s));
     }
 }

@@ -11,39 +11,38 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import shakkitekoaly.Lauta;
+import shakkitekoaly.Shakki.Lauta;
 
 /**
  *
  * @author hatchy
  */
 public class KuningatarTest {
-    
-    
-        Nappula q = new Kuningatar(new Sijainti(4,4), true);
-    
-        @Test
+
+    Nappula q = new Kuningatar(new Sijainti(4, 4), true);
+
+    @Test
     public void siirtyminenOikein() {
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2,4)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6,4)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(4,2)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(4,6)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2,2)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6,6)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2,6)));
-        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6,2)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2, 4)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6, 4)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(4, 2)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(4, 6)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2, 2)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6, 6)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(2, 6)));
+        assertTrue(q.okSiirtya(q.getSijainti(), new Sijainti(6, 2)));
     }
-    
+
     @Test
     public void piirtoOikein() {
-        String s = null;
+        char s = '0';
         s = q.piirra();
-        assertTrue(s != null);
-        Nappula vK = new Kuningas(new Sijainti(1,1), false);
-        String h = null;
+        assertTrue(s != '0');
+        Nappula vK = new Kuningas(new Sijainti(1, 1), false);
+        char h = '0';
         h = vK.piirra();
-        assertTrue(h != null);
-        
-        assertTrue(!h.equals(s));
+        assertTrue(h != '0');
+
+        assertTrue(!(h == s));
     }
 }

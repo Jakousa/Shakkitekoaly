@@ -34,11 +34,11 @@ public class Sotilas extends Nappula {
      * @return Palauttaa nappulan kuvan.
      */
     @Override
-    public String piirra() {
+    public char piirra() {
         if (this.getVari()) {
-            return "S";
+            return 'S';
         }
-        return "s";
+        return 's';
     }
 
 }

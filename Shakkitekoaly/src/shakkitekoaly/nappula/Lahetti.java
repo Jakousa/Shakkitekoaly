@@ -28,11 +28,11 @@ public class Lahetti extends Nappula {
      * @return Palauttaa nappulan kuvan.
      */
     @Override
-    public String piirra() {
+    public char piirra() {
         if (this.getVari()) {
-            return "L";
+            return 'L';
         }
-        return "l";
+        return 'l';
     }
     
 }

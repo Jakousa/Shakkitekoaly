@@ -5,6 +5,7 @@
  */
 package shakkitekoaly;
 
+import shakkitekoaly.Shakki.Lauta;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import shakkitekoaly.nappula.*;
