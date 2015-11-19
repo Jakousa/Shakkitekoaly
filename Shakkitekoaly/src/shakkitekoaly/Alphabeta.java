@@ -141,7 +141,7 @@ public class Alphabeta {
                     v = v + (kerroin * 20);
                     break;
                 case KUNINGATAR:
-                    v = v + (kerroin * 40);
+                    v = v + (kerroin * 39);
                     break;
                 case KUNINGAS:
                     v = v + (kerroin * 10000);
