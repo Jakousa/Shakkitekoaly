@@ -49,9 +49,10 @@ public class Shakkipeli {
 
     public void pelaa() {
         alkuKysely();
+        long kokoAika = System.currentTimeMillis();
         while (Math.abs(tekoaly1.arvioiLauta(lauta.getNappulat())) < 5000) {
             lauta.piirraLauta();
-            System.out.println(tekoaly1.arvioiLauta(lauta.getNappulat()));
+            System.out.println("Tekoälyn antama arvio: " + tekoaly1.arvioiLauta(lauta.getNappulat()));
             long aikaAlussa;
             long aikaLopussa;
             if (pelaaja == null) {
@@ -59,7 +60,8 @@ public class Shakkipeli {
                 tekoaly2.teeSiirto(lauta);
                 aikaLopussa = System.currentTimeMillis();
                 lauta.piirraLauta();
-                System.out.println("Aikaa kului: " + (aikaLopussa + aikaAlussa) + "ms.");
+                System.out.println("Aikaa kului: " + (aikaLopussa - aikaAlussa) + "ms.");
+                System.out.println("Aikaa kokonaisuudessaan: " + (aikaLopussa - kokoAika) + "ms.");
             } else {
                 if (pelaaja.getPelaaja()) {
                     pelaaja.teeValinta(lauta);
@@ -70,7 +72,9 @@ public class Shakkipeli {
             tekoaly1.teeSiirto(lauta);
             aikaLopussa = System.currentTimeMillis();
             lauta.piirraLauta();
-            System.out.println("Aikaa kului: " + (aikaLopussa + aikaAlussa) + "ms.");
+            System.out.println("Aikaa kului: " + (aikaLopussa - aikaAlussa) + "ms.");
+            System.out.println("Aikaa kokonaisuudessaan: " + (aikaLopussa - kokoAika) + "ms.");
+
             if (pelaaja != null) {
                 if (!pelaaja.getPelaaja()) {
                     pelaaja.teeValinta(lauta);
