@@ -17,6 +17,10 @@ public class Shakkipeli {
         this.pelaaja = null;
     }
 
+    /**
+     * Kysyy kysymykset joita pelin alussa on tarpeellista kysyä käyttäjältä.
+     */
+    
     private void alkuKysely() {
         Scanner lukija = new Scanner(System.in);
         String ok = "S";
@@ -47,6 +51,12 @@ public class Shakkipeli {
         }
     }
 
+    /**
+     * Alkukysely kutsutaan jonka jälkeen looppi joka pyörii kunnes 
+     * tekoälyn lauta-arvio sanoo että joku kuningas on syöty,
+     * loopissa pyydetään tekoälyä tekemään siirto jonka jälkeen toista tekoälyä
+     * tai pelaajaa pyydetään siirtämään riippuen aloittajasta.
+     */
     public void pelaa() {
         alkuKysely();
         long kokoAika = System.currentTimeMillis();

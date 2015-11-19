@@ -17,6 +17,11 @@ public class Pelaaja {
         return pelaaja;
     }
 
+    /**
+     * Pelaajan vuorolla kysytään mitä pelaaja haluaisi siirtää ja koitetaan tehdä
+     * se siirto.
+     * @param l Pelilauta jolla pelaaja tulee liikkumaan.
+     */
     public void teeValinta(Lauta l) {
         boolean loop = true;
         int x1 = -2;
