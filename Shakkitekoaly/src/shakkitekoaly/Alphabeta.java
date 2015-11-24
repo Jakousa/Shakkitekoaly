@@ -7,6 +7,7 @@ package shakkitekoaly;
 
 import shakkitekoaly.Shakki.Lauta;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import shakkitekoaly.nappula.*;
 
@@ -16,11 +17,10 @@ public class Alphabeta {
     private boolean pelaaja;
 
     /**
-     * 
+     *
      * @param pelaaja Pelaaja jonka vuorolla Alphabeta pelaa.
      * @param syvyys Kuinka monta vuoroa eteenpäin algoritmi arvioi.
      */
-    
     public Alphabeta(boolean pelaaja, int syvyys) {
         this.pelaaja = pelaaja;
         this.montaSiirtoa = syvyys;
@@ -66,8 +66,8 @@ public class Alphabeta {
      * Arvioi laudan mahdollisia siirtoja Alpha-beta algoritmin mukaan
      *
      * @param nappulat Laudan tilanne
-     * @param alpha 
-     * @param beta 
+     * @param alpha
+     * @param beta
      * @param syvyys Kuinka monta siirtoa etsitään
      * @param vuorossa Pelaaja jonka vuoro on
      * @return Palauttaa parhaimman arvion
@@ -150,23 +150,28 @@ public class Alphabeta {
         }
         return v;
     }
-    
+
     /**
-     * Käy läpi nappulan siirrot kutsumalla haeSiirrot mahdolliselle siirrolle 
-     * ja lisää pinoon jos siirto oli olemassa.
-     * Ei käytetä kuin alphaBetassa.
+     * Käy läpi nappulan siirrot kutsumalla haeSiirrot mahdolliselle siirrolle
+     * ja lisää pinoon jos siirto oli olemassa. Ei käytetä kuin alphaBetassa.
+     *
      * @param sijaintiLaudalla Nappulan sijainti nappulalistassa
      * @param n Nappulalista
      * @return Palauttaa pinon mahdollisia siirtoja nappulalle
      */
-
-    private Deque<Nappula[]> nappulanSiirrot(int sijaintiLaudalla, Nappula[] n) {
-        Deque<Nappula[]> pino = new ArrayDeque<Nappula[]>();
+    private Nappula[][] nappulanSiirrot(int sijaintiLaudalla, Nappula[] n) {
+        Nappula[][] vali;
+        Nappula[][] pino = new Nappula[0][n.length];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Nappula[] siirto = haeSiirto(new Sijainti(i, j), n, sijaintiLaudalla);
                 if (siirto != null) {
-                    pino.add(siirto);
+                    vali = Arrays.copyOf(pino, pino.length + 1);
+                    vali[pino.length] = new Nappula[siirto.length];
+                    for (int k = 0; k < siirto.length; k++) {
+                        vali[pino.length][k] = siirto[k];
+                    }
+                    pino = Arrays.copyOf(vali, vali.length);
                 }
             }
         }
@@ -175,6 +180,7 @@ public class Alphabeta {
 
     /**
      * Tarkistaa onko siirto mahdollinen. Ei käytetä kuin nappulanSiirron apuna
+     *
      * @param s Sijainti laudalla josta nappulaa halutaan siirtää
      * @param nappulat Laudalla olevien nappuloiden lista
      * @param sijaintiLaudalla Nappulan sijainti nappulat jonossa

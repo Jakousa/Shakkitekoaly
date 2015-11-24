@@ -5,7 +5,6 @@
 package shakkitekoaly;
 
 import shakkitekoaly.Shakki.*;
-import shakkitekoaly.nappula.*;
 
 public class Shakkitekoaly {
 
