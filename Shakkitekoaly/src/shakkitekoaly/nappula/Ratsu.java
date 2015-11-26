@@ -3,6 +3,7 @@
  */
 package shakkitekoaly.nappula;
 
+import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.RATSU;
 
 public class Ratsu extends Nappula {
@@ -27,6 +28,39 @@ public class Ratsu extends Nappula {
 
         return (Math.abs(x1 - x2) == 2 && Math.abs(y1 - y2) == 1)
                 || (Math.abs(x1 - x2) == 1 && Math.abs(y1 - y2) == 2);
+    }
+
+    @Override
+    public Sijainti[] mahdollisetSiirtymat() {
+        Sijainti[] paikat = new Sijainti[8];
+        int k = 0;
+        for (int i = 1; i < 3; i++) {
+            int x1 = this.getSijainti().getX() + i;
+            int y1 = this.getSijainti().getY() + (3 - i);
+            int x2 = this.getSijainti().getX() - i;
+            int y2 = this.getSijainti().getY() - (3 - i);
+            if (!(x1 > 7)) {
+                if (!(y1 > 7)) {
+                    paikat[k++] = new Sijainti(x1, y1);
+                }
+                if (!(y2 < 0)) {
+                    paikat[k++] = new Sijainti(x1, y2);
+                }
+            }
+            if (!(x2 < 0)) {
+                if (!(y1 > 7)) {
+                    paikat[k++] = new Sijainti(x2, y1);
+                }
+                if (!(y2 < 0)) {
+                    paikat[k++] = new Sijainti(x2, y2);
+                }
+            }
+        }
+        if (k < 8) {
+            Sijainti[] lopullinen = Arrays.copyOf(paikat, k - 1);
+            return lopullinen;
+        }
+        return paikat;
     }
 
     /**

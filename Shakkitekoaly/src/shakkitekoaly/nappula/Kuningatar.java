@@ -13,6 +13,7 @@ public class Kuningatar extends Nappula {
 
     /**
      * Kertoo onko liikkuminen mahdollista nappulan sääntöjen mukaan.
+     *
      * @param lahto Mistä halutaan siirtyä.
      * @param kohde Minne halutaan siirtyä.
      * @return Palauttaa tosi jos siirtyminen on mahdollista, muuten epätosi.
@@ -20,12 +21,18 @@ public class Kuningatar extends Nappula {
     @Override
     public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
         return (Math.abs(lahto.getX() - kohde.getX())
-                == Math.abs(lahto.getY() - kohde.getY())) ||
-                (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY());
+                == Math.abs(lahto.getY() - kohde.getY()))
+                || (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY());
+    }
+
+    @Override
+    public Sijainti[] mahdollisetSiirtymat() {
+        return null;
     }
 
     /**
      * Jokaisella nappulalla on eri merkki.
+     *
      * @return Palauttaa nappulan kuvan.
      */
     @Override

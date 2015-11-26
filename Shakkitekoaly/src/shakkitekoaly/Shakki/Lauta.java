@@ -135,6 +135,10 @@ public class Lauta {
             return mustat;
         }
     }
+    
+    public Nappula[][] getKokoMatriisi() {
+        return kaikki;
+    }
 
     public Nappula[] getNappulat() {
         return this.lauta;
@@ -287,8 +291,7 @@ public class Lauta {
                 piirro[j] = '#';
             }
         }
-        for (int i = 0; i < piirrettava.length; i++) {
-            Nappula nappula = piirrettava[i];
+        for (Nappula nappula : piirrettava) {
             int x = nappula.getSijainti().getX();
             int y = nappula.getSijainti().getY();
             piirros[x][y] = nappula.piirra();
@@ -301,8 +304,7 @@ public class Lauta {
             piirros[8][i] = (char) (i + 97);
         }
         piirros[8][8] = '*';
-        for (int i = 0; i < piirros.length; i++) {
-            char[] piirro = piirros[i];
+        for (char[] piirro : piirros) {
             for (int j = 0; j < piirro.length; j++) {
                 System.out.print(piirro[j]);
             }

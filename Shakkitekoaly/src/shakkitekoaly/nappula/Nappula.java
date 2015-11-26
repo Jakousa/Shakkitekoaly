@@ -71,6 +71,12 @@ public abstract class Nappula {
     abstract boolean okSiirtya(Sijainti lahto, Sijainti kohde);
 
     /**
+     * Kertoo suoraan mahdolliset paikat nappulan sääntöjen mukaan.
+     * @return Palauttaa paikat joinne siirtyminen on mahdollista.
+     */
+    abstract Sijainti[] mahdollisetSiirtymat();
+    
+    /**
      * Jokaisella nappulalla oma "kuva" joka toteutetaan
      *
      * @return Palauttaa nappulan "kuvan".

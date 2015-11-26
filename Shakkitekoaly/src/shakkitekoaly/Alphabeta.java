@@ -6,15 +6,13 @@
 package shakkitekoaly;
 
 import shakkitekoaly.Shakki.Lauta;
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Deque;
 import shakkitekoaly.nappula.*;
 
 public class Alphabeta {
 
-    private int montaSiirtoa;
-    private boolean pelaaja;
+    private final int montaSiirtoa;
+    private final boolean pelaaja;
 
     /**
      *
@@ -41,8 +39,7 @@ public class Alphabeta {
         Nappula[] parasSiirto = null;
         int parasArvio = Integer.MIN_VALUE;
 
-        for (int i = 0; i < l.getPelaajanNappulat(pelaaja).length; i++) {
-            Nappula n = l.getPelaajanNappulat(pelaaja)[i];
+        for (Nappula n : l.getPelaajanNappulat(pelaaja)) {
             for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
                 int uusiArvio = this.alphaBeta(nappulanSiirrot,
                         Integer.MIN_VALUE, Integer.MAX_VALUE,
@@ -92,8 +89,7 @@ public class Alphabeta {
         }
         if (vuorossa == pelaaja) {
             int v = Integer.MIN_VALUE;
-            for (int i = 0; i < nappulat.length; i++) {
-                Nappula n = nappulat[i];
+            for (Nappula n : nappulat) {
                 if (n.getVari() == pelaaja) {
                     for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, nappulat)) {
                         v = Math.max(v, alphaBeta(nappulanSiirrot, alpha, beta, syvyys - 1, !vuorossa));
@@ -107,8 +103,7 @@ public class Alphabeta {
             return v;
         } else {
             int v = Integer.MAX_VALUE;
-            for (int i = 0; i < nappulat.length; i++) {
-                Nappula n = nappulat[i];
+            for (Nappula n : nappulat) {
                 if (n.getVari() != pelaaja) {
                     for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, nappulat)) {
                         v = Math.min(v, alphaBeta(nappulanSiirrot, alpha, beta, syvyys - 1, !vuorossa));
@@ -118,7 +113,6 @@ public class Alphabeta {
                         }
                     }
                 }
-
             }
             return v;
         }
