@@ -74,7 +74,7 @@ public abstract class Nappula {
      * Kertoo suoraan mahdolliset paikat nappulan sääntöjen mukaan.
      * @return Palauttaa paikat joinne siirtyminen on mahdollista.
      */
-    abstract Sijainti[] mahdollisetSiirtymat();
+    public abstract Sijainti[] mahdollisetSiirtymat();
     
     /**
      * Jokaisella nappulalla oma "kuva" joka toteutetaan

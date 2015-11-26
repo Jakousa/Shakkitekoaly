@@ -3,6 +3,7 @@
  */
 package shakkitekoaly.nappula;
 
+import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.LAHETTI;
 
 public class Lahetti extends Nappula {
@@ -26,8 +27,35 @@ public class Lahetti extends Nappula {
 
     @Override
     public Sijainti[] mahdollisetSiirtymat() {
-        
-        
+        Sijainti[] paikat = new Sijainti[13];
+
+        int k = 0;
+        for (int i = 1; i < 7; i++) {
+            int x1 = this.getSijainti().getX() + i;
+            int y1 = this.getSijainti().getY() + i;
+            int x2 = this.getSijainti().getX() - i;
+            int y2 = this.getSijainti().getY() - i;
+            if (!(x1 > 7)) {
+                if (!(y1 > 7)) {
+                    paikat[k++] = new Sijainti(x1, y1);
+                }
+                if (!(y2 < 0)) {
+                    paikat[k++] = new Sijainti(x1, y2);
+                }
+            }
+            if (!(x2 < 0)) {
+                if (!(y1 > 7)) {
+                    paikat[k++] = new Sijainti(x2, y1);
+                }
+                if (!(y2 < 0)) {
+                    paikat[k++] = new Sijainti(x2, y2);
+                }
+            }
+        }
+        if (k < 13) {
+            Sijainti[] lopullinen = Arrays.copyOf(paikat, k - 1);
+            return lopullinen;
+        }
         return null;
     }
 
