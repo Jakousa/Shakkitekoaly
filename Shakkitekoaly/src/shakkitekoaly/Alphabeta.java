@@ -41,20 +41,32 @@ public class Alphabeta {
         Nappula[] parasSiirto = null;
         int parasArvio = Integer.MIN_VALUE;
 
-        for (int i = 0; i < l.getNappulat().length; i++) {
-            Nappula n = l.getNappulat()[i];
-            if (n.getVari() == this.pelaaja) {
-                for (Nappula[] nappulanSiirrot : nappulanSiirrot(i, l.getNappulat())) {
-                    int uusiArvio = this.alphaBeta(nappulanSiirrot,
-                            Integer.MIN_VALUE, Integer.MAX_VALUE,
-                            montaSiirtoa - 1, !pelaaja);
-                    if (parasArvio <= uusiArvio) {
-                        parasArvio = uusiArvio;
-                        parasSiirto = nappulanSiirrot;
-                    }
+        for (int i = 0; i < l.getPelaajanNappulat(pelaaja).length; i++) {
+            Nappula n = l.getPelaajanNappulat(pelaaja)[i];
+            for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
+                int uusiArvio = this.alphaBeta(nappulanSiirrot,
+                        Integer.MIN_VALUE, Integer.MAX_VALUE,
+                        montaSiirtoa - 1, !pelaaja);
+                if (parasArvio <= uusiArvio) {
+                    parasArvio = uusiArvio;
+                    parasSiirto = nappulanSiirrot;
                 }
             }
         }
+//        for (int i = 0; i < l.getNappulat().length; i++) {
+//            Nappula n = l.getNappulat()[i];
+//            if (n.getVari() == this.pelaaja) {
+//                for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
+//                    int uusiArvio = this.alphaBeta(nappulanSiirrot,
+//                            Integer.MIN_VALUE, Integer.MAX_VALUE,
+//                            montaSiirtoa - 1, !pelaaja);
+//                    if (parasArvio <= uusiArvio) {
+//                        parasArvio = uusiArvio;
+//                        parasSiirto = nappulanSiirrot;
+//                    }
+//                }
+//            }
+//        }
         if (parasSiirto == null) {
             System.out.println("Jotain meni vikaan");
         } else {
@@ -83,7 +95,7 @@ public class Alphabeta {
             for (int i = 0; i < nappulat.length; i++) {
                 Nappula n = nappulat[i];
                 if (n.getVari() == pelaaja) {
-                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(i, nappulat)) {
+                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, nappulat)) {
                         v = Math.max(v, alphaBeta(nappulanSiirrot, alpha, beta, syvyys - 1, !vuorossa));
                         alpha = Math.max(alpha, v);
                         if (beta <= alpha) {
@@ -98,7 +110,7 @@ public class Alphabeta {
             for (int i = 0; i < nappulat.length; i++) {
                 Nappula n = nappulat[i];
                 if (n.getVari() != pelaaja) {
-                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(i, nappulat)) {
+                    for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, nappulat)) {
                         v = Math.min(v, alphaBeta(nappulanSiirrot, alpha, beta, syvyys - 1, !vuorossa));
                         alpha = Math.min(alpha, v);
                         if (beta <= alpha) {
@@ -159,12 +171,12 @@ public class Alphabeta {
      * @param n Nappulalista
      * @return Palauttaa pinon mahdollisia siirtoja nappulalle
      */
-    private Nappula[][] nappulanSiirrot(int sijaintiLaudalla, Nappula[] n) {
+    private Nappula[][] nappulanSiirrot(Nappula n, Nappula[] nappulat) {
         Nappula[][] vali;
-        Nappula[][] pino = new Nappula[0][n.length];
+        Nappula[][] pino = new Nappula[0][nappulat.length];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Nappula[] siirto = haeSiirto(new Sijainti(i, j), n, sijaintiLaudalla);
+                Nappula[] siirto = haeSiirto(new Sijainti(i, j), nappulat, n);
                 if (siirto != null) {
                     vali = Arrays.copyOf(pino, pino.length + 1);
                     vali[pino.length] = new Nappula[siirto.length];
@@ -186,11 +198,16 @@ public class Alphabeta {
      * @param sijaintiLaudalla Nappulan sijainti nappulat jonossa
      * @return Palauttaa uuden tilanteen nappulat jos siirto oli mahdollinen
      */
-    private Nappula[] haeSiirto(Sijainti s, Nappula[] nappulat, int sijaintiLaudalla) {
+    private Nappula[] haeSiirto(Sijainti s, Nappula[] nappulat, Nappula n) {
         Nappula[] palautetaan = null;
         Lauta siirretty = new Lauta(nappulat);
-        if (siirretty.siirraNappulaa(siirretty.getNappulat()[sijaintiLaudalla], s)) {
-            palautetaan = siirretty.getNappulat();
+        for (Nappula n1 : siirretty.getNappulat()) {
+            if (n1.equals(n)) {
+                if (siirretty.siirraNappulaa(n1, s)) {
+                    palautetaan = siirretty.getNappulat();
+                }
+                break;
+            }
         }
         return palautetaan;
     }
