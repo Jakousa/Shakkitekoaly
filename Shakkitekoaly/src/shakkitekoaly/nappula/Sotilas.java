@@ -32,7 +32,6 @@ public class Sotilas extends Nappula {
     public Sijainti[] mahdollisetSiirtymat() {
         int x = this.getSijainti().getX();
         int y = this.getSijainti().getY();
-
         if ((!this.getVari() && x == 7)
                 || (this.getVari() && x == 0)) {
             return new Sijainti[0];
@@ -45,13 +44,13 @@ public class Sotilas extends Nappula {
         }
         int k = 0;
         for (int i = -1; i < 2; i++) {
-            if (x+i > 7 || x+i < 0) {
+            if (y+i > 7 || y+i < 0) {
                 continue;
             }
             if (this.getVari()) {
-                paikat[k++] = new Sijainti(x+i,y-1);
+                paikat[k++] = new Sijainti(x+1,y+i);
             } else {
-                paikat[k++] = new Sijainti(x+i,y+1);
+                paikat[k++] = new Sijainti(x-1,y+i);
             }
         }
         return paikat;

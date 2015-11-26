@@ -56,7 +56,7 @@ public class Lahetti extends Nappula {
             Sijainti[] lopullinen = Arrays.copyOf(paikat, k - 1);
             return lopullinen;
         }
-        return null;
+        return paikat;
     }
 
     /**

@@ -168,9 +168,11 @@ public class Alphabeta {
     private Nappula[][] nappulanSiirrot(Nappula n, Nappula[] nappulat) {
         Nappula[][] vali;
         Nappula[][] pino = new Nappula[0][nappulat.length];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Nappula[] siirto = haeSiirto(new Sijainti(i, j), nappulat, n);
+        for (Sijainti mahdollisuus : n.mahdollisetSiirtymat()) {
+            
+//        for (int i = 0; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+                Nappula[] siirto = haeSiirto(mahdollisuus, nappulat, n);
                 if (siirto != null) {
                     vali = Arrays.copyOf(pino, pino.length + 1);
                     vali[pino.length] = new Nappula[siirto.length];
@@ -178,7 +180,7 @@ public class Alphabeta {
                         vali[pino.length][k] = siirto[k];
                     }
                     pino = Arrays.copyOf(vali, vali.length);
-                }
+//                }
             }
         }
         return pino;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package shakkitekoaly.nappula;
 
@@ -22,25 +22,25 @@ public class Torni extends Nappula {
     public boolean okSiirtya(Sijainti lahto, Sijainti kohde) {
         return (kohde.getX() == lahto.getX() || kohde.getY() == lahto.getY());
     }
-    
+
     @Override
     public Sijainti[] mahdollisetSiirtymat() {
         Sijainti[] paikat = new Sijainti[14];
         int x = this.getSijainti().getX();
         int y = this.getSijainti().getY();
-        for (int i = 0, j = 0, k = 7; i < 7; i++) {
-            Sijainti s = new Sijainti(x,i);
-            Sijainti h = new Sijainti(i,y);
-            if (s.equals(this.getSijainti()) || h.equals(this.getSijainti())) {
-                continue;
+        for (int i = 0, j = 0, k = 7; i < 8; i++) {
+            Sijainti s = new Sijainti(x, i);
+            Sijainti h = new Sijainti(i, y);
+            if (!(s.equals(this.getSijainti())) || h.equals(this.getSijainti())) {
+                paikat[j++] = s;
             }
-            paikat[i++] = s;
-            paikat[k++] = h;
+            if (!(h.equals(this.getSijainti()))) {
+                paikat[k++] = h;
+            }
         }
         return paikat;
     }
 
-    
     /**
      * Jokaisella nappulalla on eri merkki.
      *
@@ -51,8 +51,8 @@ public class Torni extends Nappula {
         if (this.getVari()) {
             return 'T';
         }
-            return 't';
-        
+        return 't';
+
     }
-    
+
 }
