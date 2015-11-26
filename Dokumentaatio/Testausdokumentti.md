@@ -8,6 +8,8 @@ Tekoälyn suorituskykyä voi tarkastella myös suorituksen aikana jolloin se ker
 
 Ohjelmaa voi myös testata pistämällä helpomman tekoälyn (syvyys n) vaikeampaa tekoälyä vastaan (syvyys m jossa m > n) jolloin vaikeamman pitäisi aina voittaa tai tilanteen päätyä siihen että molemmat pelaajat suojelevat omia nappuloita eikä peli etene.
 
+Tilanne jossa peli ei etene on hieman turhauttavaa katsella, törmäsin kummalliseen tilanteeseen jossa tekoälyt ensin siirtelivät torneja vuorotellen eikä peli edennyt muutamaan sekuntiin kunnes yllättäen toinen pelaajista siirsikin eri nappulaa. Yritän vielä selvittää syitä tai saada näin tapahtumaan toistuvasti.
+
 Tekoälyä on empiirisesti testattu tilanteissa joissa yksinkertaisempaa tekoälyä (syvyys 2) on yritetty hämätä ihmistä vastaan. Tekoäly on valinnut oletettavan reitin. Tämä on helposti tarkasteltu pitämällä silmällä kuinka suuria vaihtoja tekoäly voi tietää tapahtuvan siirtämällä nappula syötiksi. Esimerkiksi syöttämällä vaaraton torni sotilaalle niin, että tämä avaa reitin kuningattarelle voittaa pelin seuraavalla vuorolla.
 
 Suorituskykytestejä on tehty tilanteissa joissa aluksi löytyy paras siirto verrattuna tilanteeseen jossa jokainen edellisestä seuraava siirto on parempi, tällä varmistuttiin myös alpha-beta karsinnan toimivuudesta.
