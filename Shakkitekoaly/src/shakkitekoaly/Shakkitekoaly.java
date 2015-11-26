@@ -1,5 +1,6 @@
 /**
  * Shakkitekoaly luokassa..
+ * Tällä hetkellä se aloittaa uuden Shakkipelin.
  *
  */
 package shakkitekoaly;

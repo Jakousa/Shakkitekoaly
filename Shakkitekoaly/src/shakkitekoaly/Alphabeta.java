@@ -1,6 +1,6 @@
 /**
- *
- * Luokka määrittelee alpha-beta algoritmin ja tekee siirron sen mukaan.
+ * Luokka määrittelee alpha-beta algoritmin ja pystyy tekemään arvion laudan
+ * tilanteesta sekä siirtää nappulaa sen mukaan.
  *
  */
 package shakkitekoaly;
@@ -39,31 +39,31 @@ public class Alphabeta {
         Nappula[] parasSiirto = null;
         int parasArvio = Integer.MIN_VALUE;
 
-        for (Nappula n : l.getPelaajanNappulat(pelaaja)) {
-            for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
-                int uusiArvio = this.alphaBeta(nappulanSiirrot,
-                        Integer.MIN_VALUE, Integer.MAX_VALUE,
-                        montaSiirtoa - 1, !pelaaja);
-                if (parasArvio <= uusiArvio) {
-                    parasArvio = uusiArvio;
-                    parasSiirto = nappulanSiirrot;
-                }
-            }
-        }
-//        for (int i = 0; i < l.getNappulat().length; i++) {
-//            Nappula n = l.getNappulat()[i];
-//            if (n.getVari() == this.pelaaja) {
-//                for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
-//                    int uusiArvio = this.alphaBeta(nappulanSiirrot,
-//                            Integer.MIN_VALUE, Integer.MAX_VALUE,
-//                            montaSiirtoa - 1, !pelaaja);
-//                    if (parasArvio <= uusiArvio) {
-//                        parasArvio = uusiArvio;
-//                        parasSiirto = nappulanSiirrot;
-//                    }
+//        for (Nappula n : l.getPelaajanNappulat(pelaaja)) {
+//            for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
+//                int uusiArvio = this.alphaBeta(nappulanSiirrot,
+//                        Integer.MIN_VALUE, Integer.MAX_VALUE,
+//                        montaSiirtoa - 1, !pelaaja);
+//                if (parasArvio <= uusiArvio) {
+//                    parasArvio = uusiArvio;
+//                    parasSiirto = nappulanSiirrot;
 //                }
 //            }
 //        }
+        for (int i = 0; i < l.getNappulat().length; i++) {
+            Nappula n = l.getNappulat()[i];
+            if (n.getVari() == this.pelaaja) {
+                for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
+                    int uusiArvio = this.alphaBeta(nappulanSiirrot,
+                            Integer.MIN_VALUE, Integer.MAX_VALUE,
+                            montaSiirtoa - 1, !pelaaja);
+                    if (parasArvio <= uusiArvio) {
+                        parasArvio = uusiArvio;
+                        parasSiirto = nappulanSiirrot;
+                    }
+                }
+            }
+        }
         if (parasSiirto == null) {
             System.out.println("Jotain meni vikaan");
         } else {
@@ -121,7 +121,7 @@ public class Alphabeta {
     /**
      * Arvioi laudan ja antaa tilanteesta algoritmille arvion Palauttaa suuren
      * luvun jos tilanne arvioidaan hyväksi ja pienemmän jos tilanne on
-     * huonompi.
+     * huonompi. Nappuloiden arvoja olisi hyvä muokata vielä.
      *
      * @param l Lista nappuloita eli laudan tilanne jota halutaan arvioida
      * @return palauttaa tehdyn arvion laudasta kokonaislukuna
@@ -144,10 +144,10 @@ public class Alphabeta {
                     v = v + (kerroin * 15);
                     break;
                 case TORNI:
-                    v = v + (kerroin * 20);
+                    v = v + (kerroin * 25);
                     break;
                 case KUNINGATAR:
-                    v = v + (kerroin * 39);
+                    v = v + (kerroin * 45);
                     break;
                 case KUNINGAS:
                     v = v + (kerroin * 10000);
@@ -169,18 +169,14 @@ public class Alphabeta {
         Nappula[][] vali;
         Nappula[][] pino = new Nappula[0][nappulat.length];
         for (Sijainti mahdollisuus : n.mahdollisetSiirtymat()) {
-            
-//        for (int i = 0; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-                Nappula[] siirto = haeSiirto(mahdollisuus, nappulat, n);
-                if (siirto != null) {
-                    vali = Arrays.copyOf(pino, pino.length + 1);
-                    vali[pino.length] = new Nappula[siirto.length];
-                    for (int k = 0; k < siirto.length; k++) {
-                        vali[pino.length][k] = siirto[k];
-                    }
-                    pino = Arrays.copyOf(vali, vali.length);
-//                }
+            Nappula[] siirto = haeSiirto(mahdollisuus, nappulat, n);
+            if (siirto != null) {
+                vali = Arrays.copyOf(pino, pino.length + 1);
+                vali[pino.length] = new Nappula[siirto.length];
+                for (int k = 0; k < siirto.length; k++) {
+                    vali[pino.length][k] = siirto[k];
+                }
+                pino = Arrays.copyOf(vali, vali.length);
             }
         }
         return pino;

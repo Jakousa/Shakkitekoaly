@@ -1,5 +1,6 @@
 /**
- *
+ *  Torni on nappula joka pystyy siirtymään kuinka tahansa paljon 
+ *  suoraan eteen, taakse tai sivuille.
  */
 package shakkitekoaly.nappula;
 
@@ -31,7 +32,7 @@ public class Torni extends Nappula {
         for (int i = 0, j = 0, k = 7; i < 8; i++) {
             Sijainti s = new Sijainti(x, i);
             Sijainti h = new Sijainti(i, y);
-            if (!(s.equals(this.getSijainti())) || h.equals(this.getSijainti())) {
+            if (!(s.equals(this.getSijainti()))) {
                 paikat[j++] = s;
             }
             if (!(h.equals(this.getSijainti()))) {

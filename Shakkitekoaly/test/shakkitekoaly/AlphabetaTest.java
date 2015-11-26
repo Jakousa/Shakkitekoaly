@@ -77,11 +77,11 @@ public class AlphabetaTest {
         arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         simppeli.teeSiirto(l); //Pitäisi syödä Tornilla Kuningatar
         arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
-        assertTrue(Math.abs(arvioAlku - arvioLoppu) == 39);
+        assertTrue(Math.abs(arvioAlku - arvioLoppu) == 45);
         arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Pitäisi syödä Kuninkaalla Torni.
         arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
-        assertTrue(Math.abs(arvioAlku - arvioLoppu) == 20);
+        assertTrue(Math.abs(arvioAlku - arvioLoppu) == 25);
     }
 
     @Test

@@ -1,5 +1,5 @@
 /**
- *
+ *  Luokka pitää x ja y koordinaatteja pelilautaa ja sääntöjen ylläpitoa varten.
  */
 package shakkitekoaly.nappula;
 

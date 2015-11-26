@@ -1,5 +1,5 @@
 /**
- *
+ *  Kuningas on nappula joka voi siirtyä yhden ruudun mihin tahansa suuntaan.
  */
 package shakkitekoaly.nappula;
 

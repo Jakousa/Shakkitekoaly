@@ -1,3 +1,8 @@
+/**
+ * Shakkipeli luokka ylläpitää shakkipeliä johon kuuluu lauta ja kaksi pelaajaa,
+ * molemmat pelaajista voivat olla tekoälyjä tai toinen voi olla pelaaja.
+ */
+
 package shakkitekoaly.Shakki;
 
 import java.util.Scanner;
@@ -5,7 +10,7 @@ import shakkitekoaly.Alphabeta;
 
 public class Shakkipeli {
 
-    private Lauta lauta;
+    private final Lauta lauta;
     private Alphabeta tekoaly1;
     private Alphabeta tekoaly2;
     private Pelaaja pelaaja;

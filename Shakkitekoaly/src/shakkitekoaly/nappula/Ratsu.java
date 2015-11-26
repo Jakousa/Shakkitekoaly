@@ -1,5 +1,7 @@
 /**
- *
+ * Ratsu on nappula joka voi siirtyä erityisellä tavalla, Se ei rajoita jos
+ * tiellä on toinen nappula ja ratsu siirtyy L muodossa: ensin kaksi haluttuun 
+ * suuntaan ja sitten yhden siitä sivulle.
  */
 package shakkitekoaly.nappula;
 

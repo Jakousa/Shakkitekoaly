@@ -1,5 +1,6 @@
 /**
- *
+ *  Kuningatar on nappula, joka voi siirtyä suoraan tai kulmittain kuinka tahansa
+ * paljon.
  */
 package shakkitekoaly.nappula;
 

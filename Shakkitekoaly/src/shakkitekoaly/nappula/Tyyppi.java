@@ -1,5 +1,5 @@
 /**
- * 
+ * Tyyppi enum kertoo minkä tyyppinen nappula on kyseessä.
  */
 package shakkitekoaly.nappula;
 

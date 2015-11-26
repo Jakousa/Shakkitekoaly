@@ -1,5 +1,6 @@
 /**
- *
+ *  Sotilas on nappula joka pystyy siirtymään tavallisesti vain yhden ruudun eteenpäin ja
+ *  kulmittain yhden ruudun jos se syö sieltä.
  */
 package shakkitekoaly.nappula;
 
@@ -48,9 +49,9 @@ public class Sotilas extends Nappula {
                 continue;
             }
             if (this.getVari()) {
-                paikat[k++] = new Sijainti(x+1,y+i);
-            } else {
                 paikat[k++] = new Sijainti(x-1,y+i);
+            } else {
+                paikat[k++] = new Sijainti(x+1,y+i);
             }
         }
         return paikat;

@@ -1,6 +1,10 @@
 /**
- *
- * Lauta huolehtii nappuloista ja niiden siirtämisestä.
+ * 
+ * Lauta pitää jonoa nappuloita joilla peliä pelataan, se pystyy myös siirtämään
+ * niitä ja osaa syödä pystyy myös tulostamaan pelilaudan tilanteen.
+ * 
+ * Luokassa on vielä keskeneräisiä muutoksia kun harkitsen kolmea erilaista tapaa
+ * tallentaa luokan nappulat, siksi osa on kommentoimatta.
  */
 package shakkitekoaly.Shakki;
 
@@ -25,7 +29,7 @@ public class Lauta {
         for (Nappula n : nappulat) {
             kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
         }
-        setMustatJaValkoiset(nappulat);
+//        setMustatJaValkoiset(nappulat);
         
     }
 
@@ -85,26 +89,26 @@ public class Lauta {
         for (Nappula n : lauta) {
             kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
         }
-        setMustatJaValkoiset(this.lauta);
+//        setMustatJaValkoiset(this.lauta);
     }
 
-    private void setMustatJaValkoiset(Nappula[] nappulat) {
-        int valkoistenMaara = 0;
-        for (Nappula n : nappulat) {
-            if (n.getVari()) {
-                valkoistenMaara++;
-            }
-        }
-        this.valkoiset = new Nappula[valkoistenMaara];
-        this.mustat = new Nappula[nappulat.length - valkoistenMaara];
-        for (int j = 0, k = 0, i = 0; i < nappulat.length; i++) {
-            if (nappulat[i].getVari()) {
-                valkoiset[j++] = nappulat[i];
-            } else {
-                mustat[k++] = nappulat[i]; 
-            }
-        }
-    }
+//    private void setMustatJaValkoiset(Nappula[] nappulat) {
+//        int valkoistenMaara = 0;
+//        for (Nappula n : nappulat) {
+//            if (n.getVari()) {
+//                valkoistenMaara++;
+//            }
+//        }
+//        this.valkoiset = new Nappula[valkoistenMaara];
+//        this.mustat = new Nappula[nappulat.length - valkoistenMaara];
+//        for (int j = 0, k = 0, i = 0; i < nappulat.length; i++) {
+//            if (nappulat[i].getVari()) {
+//                valkoiset[j++] = nappulat[i];
+//            } else {
+//                mustat[k++] = nappulat[i]; 
+//            }
+//        }
+//    }
 
     /**
      * Asettaa laudalle nappulat
@@ -117,24 +121,24 @@ public class Lauta {
         for (Nappula n : nappulaTilanne) {
             kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
         }
-        setMustatJaValkoiset(nappulaTilanne);
+//        setMustatJaValkoiset(nappulaTilanne);
     }
     
-    public Nappula[] getMustat() {
-        return this.mustat;
-    }
-    
-    public Nappula[] getValkoiset() {
-        return this.valkoiset;
-    }
-    
-    public Nappula[] getPelaajanNappulat(boolean pelaaja) {
-        if (pelaaja) {
-            return valkoiset;
-        } else {
-            return mustat;
-        }
-    }
+//    public Nappula[] getMustat() {
+//        return this.mustat;
+//    }
+//    
+//    public Nappula[] getValkoiset() {
+//        return this.valkoiset;
+//    }
+//    
+//    public Nappula[] getPelaajanNappulat(boolean pelaaja) {
+//        if (pelaaja) {
+//            return valkoiset;
+//        } else {
+//            return mustat;
+//        }
+//    }
     
     public Nappula[][] getKokoMatriisi() {
         return kaikki;
@@ -285,8 +289,7 @@ public class Lauta {
     public void piirraLauta() {
         Nappula[] piirrettava = lauta;
         char[][] piirros = new char[9][9];
-        for (int i = 0; i < piirros.length; i++) {
-            char[] piirro = piirros[i];
+        for (char[] piirro : piirros) {
             for (int j = 0; j < piirro.length; j++) {
                 piirro[j] = '#';
             }
@@ -316,10 +319,10 @@ public class Lauta {
      *
      * Poistaa nappulan laudalta ja pienentää nappulalistaa
      *
-     * @param s Mistä kohdin lautaa poistetaan nappula
+     * @param n Mikä nappula poistetaan
      *
      */
-    private void syo(Nappula n) { //Kirjoitetaan tarvittaessa omalla
+    private void syo(Nappula n) {
         if (n != null) {
             int s = 0;
             for (int i = 0; i < lauta.length; i++) {

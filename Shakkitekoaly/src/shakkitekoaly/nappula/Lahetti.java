@@ -1,5 +1,5 @@
 /**
- *
+ * Lähetti on nappula, joka pystyy siirtymään kuinka tahansa paljon kulmittain.
  */
 package shakkitekoaly.nappula;
 

@@ -1,3 +1,8 @@
+/**
+ * Pelaaja luokassa on pelaajalle kyselyjä ja se pitää yllä kummalla puolella 
+ * pelaaja on.
+ */
+
 package shakkitekoaly.Shakki;
 
 import java.util.Scanner;
@@ -5,8 +10,8 @@ import shakkitekoaly.nappula.*;
 
 public class Pelaaja {
 
-    private boolean pelaaja;
-    private Scanner lukija;
+    private final boolean pelaaja;
+    private final Scanner lukija;
 
     public Pelaaja(boolean vuorolla) {
         this.pelaaja = vuorolla;
