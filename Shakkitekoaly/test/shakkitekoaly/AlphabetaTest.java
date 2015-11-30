@@ -100,4 +100,21 @@ public class AlphabetaTest {
         int arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
         assertTrue(Math.abs(arvioAlku - arvioLoppu) == 15);
     }
+
+    @Test
+    public void alykkyysTestiKuninkaanuhraus() {
+        Alphabeta tosifiksu = new Alphabeta(false, 4);
+        Lauta l = null;
+        Nappula[] nappulat = new Nappula[5];
+        nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
+        nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
+        nappulat[2] = new Torni(new Sijainti(4, 5), true);
+        nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
+        nappulat[4] = new Kuningatar(new Sijainti(6, 6), true);
+        l = new Lauta(nappulat);
+        int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
+        tosifiksu.teeSiirto(l);
+        int arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
+        assertTrue(true);
+    }
 }
