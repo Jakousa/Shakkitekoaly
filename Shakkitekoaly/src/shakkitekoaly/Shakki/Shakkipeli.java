@@ -97,5 +97,7 @@ public class Shakkipeli {
                 }
             }
         }
+        lauta.piirraLauta();
+        System.out.println(tekoaly1.arvioiLauta(lauta.getNappulat()));
     }
 }

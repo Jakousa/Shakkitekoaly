@@ -1,10 +1,10 @@
 /**
- * 
+ *
  * Lauta pitää jonoa nappuloita joilla peliä pelataan, se pystyy myös siirtämään
  * niitä ja osaa syödä pystyy myös tulostamaan pelilaudan tilanteen.
- * 
- * Luokassa on vielä keskeneräisiä muutoksia kun harkitsen kolmea erilaista tapaa
- * tallentaa luokan nappulat, siksi osa on kommentoimatta.
+ *
+ * Luokassa on vielä keskeneräisiä muutoksia kun harkitsen kolmea erilaista
+ * tapaa tallentaa luokan nappulat, siksi osa on kommentoimatta.
  */
 package shakkitekoaly.Shakki;
 
@@ -14,8 +14,6 @@ import static shakkitekoaly.nappula.Tyyppi.*;
 public class Lauta {
 
     private Nappula[] lauta;
-    private Nappula[] valkoiset;
-    private Nappula[] mustat;
     private Nappula[][] kaikki;
 
     /**
@@ -25,12 +23,6 @@ public class Lauta {
         Nappula[] nappulat = new Nappula[16 * 2];
         alusta(nappulat);
         this.lauta = nappulat;
-        this.kaikki = new Nappula[8][8];
-        for (Nappula n : nappulat) {
-            kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
-        }
-//        setMustatJaValkoiset(nappulat);
-        
     }
 
     /**
@@ -85,30 +77,7 @@ public class Lauta {
                     break;
             }
         }
-        this.kaikki = new Nappula[8][8];
-        for (Nappula n : lauta) {
-            kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
-        }
-//        setMustatJaValkoiset(this.lauta);
     }
-
-//    private void setMustatJaValkoiset(Nappula[] nappulat) {
-//        int valkoistenMaara = 0;
-//        for (Nappula n : nappulat) {
-//            if (n.getVari()) {
-//                valkoistenMaara++;
-//            }
-//        }
-//        this.valkoiset = new Nappula[valkoistenMaara];
-//        this.mustat = new Nappula[nappulat.length - valkoistenMaara];
-//        for (int j = 0, k = 0, i = 0; i < nappulat.length; i++) {
-//            if (nappulat[i].getVari()) {
-//                valkoiset[j++] = nappulat[i];
-//            } else {
-//                mustat[k++] = nappulat[i]; 
-//            }
-//        }
-//    }
 
     /**
      * Asettaa laudalle nappulat
@@ -117,29 +86,8 @@ public class Lauta {
      */
     public void setNappulat(Nappula[] nappulaTilanne) {
         this.lauta = nappulaTilanne;
-        this.kaikki = new Nappula[8][8];
-        for (Nappula n : nappulaTilanne) {
-            kaikki[n.getSijainti().getX()][n.getSijainti().getY()] = n;
-        }
-//        setMustatJaValkoiset(nappulaTilanne);
     }
-    
-//    public Nappula[] getMustat() {
-//        return this.mustat;
-//    }
-//    
-//    public Nappula[] getValkoiset() {
-//        return this.valkoiset;
-//    }
-//    
-//    public Nappula[] getPelaajanNappulat(boolean pelaaja) {
-//        if (pelaaja) {
-//            return valkoiset;
-//        } else {
-//            return mustat;
-//        }
-//    }
-    
+
     public Nappula[][] getKokoMatriisi() {
         return kaikki;
     }
@@ -159,27 +107,17 @@ public class Lauta {
         if (n.siirry(n.getSijainti(), kohde)
                 && onkoReitti(n, kohde)) {
             Nappula syotava = null;
-            if (kaikki[kohde.getX()][kohde.getY()] != null) {
-                Nappula nappula = kaikki[kohde.getX()][kohde.getY()]; //miksi?!
-                if (nappula.getVari() == n.getVari()
-                        || (n.getTyyppi() == SOTILAS
-                        && n.getSijainti().getY() == nappula.getSijainti().getY())) {
-                    return false;
+            for (Nappula nappula : this.lauta) {
+                if (nappula.getSijainti().equals(kohde)) {
+                    if (nappula.getVari() == n.getVari()
+                            || (n.getTyyppi() == SOTILAS
+                            && n.getSijainti().getY() == nappula.getSijainti().getY())) {
+                        return false;
+                    }
+                    syotava = nappula;
+                    break;
                 }
-                syotava = nappula;
             }
-//            for (int i = 0; i < this.lauta.length; i++) {
-//                Nappula nappula = this.lauta[i];
-//                if (nappula.getSijainti().equals(kohde)) {
-//                    if (nappula.getVari() == n.getVari()
-//                            || (n.getTyyppi() == SOTILAS
-//                            && n.getSijainti().getY() == nappula.getSijainti().getY())) {
-//                        return false;
-//                    }
-//                    syotava = nappula;
-//                    break;
-//                }
-//            }
             if (n.getTyyppi() == SOTILAS
                     && kohde.getY() != n.getSijainti().getY()
                     && syotava == null) {
@@ -202,7 +140,7 @@ public class Lauta {
      * @return palauttaa pystyykö reitillä siirtymään suoraan.
      */
     public boolean onkoReitti(Nappula n, Sijainti kohde) {
-        if (n.getTyyppi() == RATSU) {
+        if (n.getTyyppi() == RATSU || n.getSijainti().equals(kohde)) {
             return true;
         }
         Sijainti uus = new Sijainti(kohde.getX(), kohde.getY());
@@ -210,9 +148,11 @@ public class Lauta {
         int x = n.getSijainti().getX();
         int y = n.getSijainti().getY();
 
-        while (!(uus.getX() == n.getSijainti().getX()
-                && uus.getY() == n.getSijainti().getY())) {
+        int pit = Math.max(Math.abs(x - kohde.getX()),Math.abs(y - kohde.getY()));
+        Sijainti[] mahd = new Sijainti[pit-1];
 
+        for (int i = 0; i < mahd.length; i++) {
+            uus = new Sijainti(uus.getX(), uus.getY());
             if (x < uus.getX()) {
                 uus.setX(uus.getX() - 1);
             } else if (x > uus.getX()) {
@@ -223,37 +163,20 @@ public class Lauta {
             } else if (y > uus.getY()) {
                 uus.setY(uus.getY() + 1);
             }
-
             if (n.getSijainti().equals(uus)) {
-                return true;
+                break;
             }
-            if (kaikki[uus.getX()][uus.getY()] != null) {
-                return false;
+            mahd[i] = uus;
+        }
+
+        for (Sijainti reitti : mahd) {
+            for (Nappula nappula : lauta) {
+                if (nappula.getSijainti().equals(reitti)) {
+                    return false;
+                }
             }
         }
         return true;
-
-//        if (x < kohde.getX()) {
-//            uus.setX(kohde.getX() - 1);
-//        } else if (x > kohde.getX()) {
-//            uus.setX(kohde.getX() + 1);
-//        }
-//        if (y < kohde.getY()) {
-//            uus.setY(kohde.getY() - 1);
-//        } else if (y > kohde.getY()) {
-//            uus.setY(kohde.getY() + 1);
-//        }
-//
-//        if (n.getSijainti().equals(uus)) {
-//            return true;
-//        }
-//        for (Nappula nappula : lauta) {
-//            if (nappula.getSijainti().equals(uus)) {
-//                return false;
-//            }
-//        }
-//
-//        return onkoReitti(n, uus);
     }
 
     /**
@@ -299,12 +222,9 @@ public class Lauta {
             int y = nappula.getSijainti().getY();
             piirros[x][y] = nappula.piirra();
         }
-        for (int i = 0; i < piirros.length - 1; i++) {
-            char[] piirro = piirros[i];
-            piirro[8] = (char) (i + 48);
-        }
         for (int i = 0; i < piirros[8].length - 1; i++) {
             piirros[8][i] = (char) (i + 97);
+            piirros[i][8] = (char) (i + 48);
         }
         piirros[8][8] = '*';
         for (char[] piirro : piirros) {
