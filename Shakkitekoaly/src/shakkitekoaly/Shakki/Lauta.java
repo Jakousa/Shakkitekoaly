@@ -3,8 +3,6 @@
  * Lauta pitää jonoa nappuloita joilla peliä pelataan, se pystyy myös siirtämään
  * niitä ja osaa syödä pystyy myös tulostamaan pelilaudan tilanteen.
  *
- * Luokassa on vielä keskeneräisiä muutoksia kun harkitsen kolmea erilaista
- * tapaa tallentaa luokan nappulat, siksi osa on kommentoimatta.
  */
 package shakkitekoaly.Shakki;
 
@@ -14,7 +12,6 @@ import static shakkitekoaly.nappula.Tyyppi.*;
 public class Lauta {
 
     private Nappula[] lauta;
-    private Nappula[][] kaikki;
 
     /**
      * Nappulat luodaan konstruktorin aikana.
@@ -86,10 +83,6 @@ public class Lauta {
      */
     public void setNappulat(Nappula[] nappulaTilanne) {
         this.lauta = nappulaTilanne;
-    }
-
-    public Nappula[][] getKokoMatriisi() {
-        return kaikki;
     }
 
     public Nappula[] getNappulat() {

@@ -45,10 +45,11 @@ public class AlphabetaTest {
     public void alykkyysTestiItsesuojeluvaisto() {
         Alphabeta tosifiksu = new Alphabeta(false, 4);
         Lauta l = null;
-        Nappula[] nappulat = new Nappula[3];
+        Nappula[] nappulat = new Nappula[4];
         nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
         nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
+        nappulat[3] = new Kuningas(new Sijainti(0,7), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l);
@@ -64,11 +65,12 @@ public class AlphabetaTest {
     public void alykkyysTestiSuojele() {
         Alphabeta tosifiksu = new Alphabeta(false, 4);
         Lauta l = null;
-        Nappula[] nappulat = new Nappula[4];
+        Nappula[] nappulat = new Nappula[5];
         nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
         nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
         nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
+        nappulat[4] = new Kuningas(new Sijainti(0,7), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Pitäisi syödä Kuningattarella Lähetti.
@@ -88,12 +90,13 @@ public class AlphabetaTest {
     public void alykkyysTestiTosiVaikea() {
         Alphabeta tosifiksu = new Alphabeta(false, 4);
         Lauta l = null;
-        Nappula[] nappulat = new Nappula[5];
+        Nappula[] nappulat = new Nappula[6];
         nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
         nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
         nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
         nappulat[4] = new Kuningatar(new Sijainti(6, 6), true);
+        nappulat[5] = new Kuningas(new Sijainti(7,0), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Pitäisi syödä kuningattarella lähetti.
@@ -105,16 +108,33 @@ public class AlphabetaTest {
     public void alykkyysTestiKuninkaanuhraus() {
         Alphabeta tosifiksu = new Alphabeta(false, 4);
         Lauta l = null;
-        Nappula[] nappulat = new Nappula[5];
-        nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
-        nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
-        nappulat[2] = new Torni(new Sijainti(4, 5), true);
-        nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
-        nappulat[4] = new Kuningatar(new Sijainti(6, 6), true);
+        Nappula[] nappulat = new Nappula[7];
+        nappulat[0] = new Kuningas(new Sijainti(7, 7), false);
+        nappulat[1] = new Torni(new Sijainti(2, 5), false);
+        nappulat[2] = new Torni(new Sijainti(2, 3), false);
+        nappulat[3] = new Torni(new Sijainti(1, 7), false);
+        nappulat[4] = new Torni(new Sijainti(3, 6), false);
+        nappulat[5] = new Kuningas(new Sijainti(0, 4), true);
+        nappulat[6] = new Torni(new Sijainti(7, 0), true);
         l = new Lauta(nappulat);
+        /**
+         *  ####K###0
+         *  #######t1
+         *  ###t#t##2
+         *  ######t#3
+         *  ########4
+         *  ########5
+         *  ########6
+         *  T######k7
+         *  abcdefgh*
+         */
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
-        tosifiksu.teeSiirto(l);
+        tosifiksu.teeSiirto(l); //Älykäs ei uhraa omaa kuningasta
+        tosifiksu.teeSiirto(l); //Kuningas on turvassa ja aika siirtää tornia
         int arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
-        assertTrue(true);
+        assertTrue(arvioAlku == arvioLoppu);
+        tosifiksu.teeSiirto(l); //Vastustajan kuningas syödään vasta nyt tornilla
+        arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
+        //assertTrue(Math.abs(arvioAlku - arvioLoppu) > 5000); //Sitä ei syödä....
     }
 }

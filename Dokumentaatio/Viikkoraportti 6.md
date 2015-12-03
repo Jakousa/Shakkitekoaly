@@ -1,1 +1,3 @@
 Löysin hienon bugin. Tekoäly ei tiedä että peli tosiaan loppuu oman kuninkaan menetykseen. Uhrasi kuninkaan toisen kuningasta varten ja hävisi pelin siksi.
+Ongelma oli helppo korjata, jos merkitään puussa lehdiksi ne joiden lauta-arviot ovat niin "suuret" että jokin kuningas on syöty. Vaati testien uudelleen kirjoittamista.
+Uusi hieno bugi liittyen alpha-betan käyttäytymiseen kuninkaiden kanssa. Kuningasta ei syödä kun ollaan tietoisia tulevasta voitosta vaan päädytään aina mahdollisten siirtojen listan loppuun joka johtaisi kuitenkin voittoon. Pitää kai siirtää voittosiirron etäisyys jossain alpha-betan sisällä niin että se valitsee sen joka tulisi ensin.

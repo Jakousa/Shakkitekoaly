@@ -7,12 +7,14 @@ package shakkitekoaly;
 
 import shakkitekoaly.Shakki.Lauta;
 import java.util.Arrays;
-import shakkitekoaly.nappula.*;
+import shakkitekoaly.nappula.Nappula;
+import shakkitekoaly.nappula.Sijainti;
 
 public class Alphabeta {
 
-    private final int montaSiirtoa;
+    private int montaSiirtoa;
     private final boolean pelaaja;
+    private int parasSyvyys;
 
     /**
      *
@@ -39,25 +41,13 @@ public class Alphabeta {
         Nappula[] parasSiirto = null;
         int parasArvio = Integer.MIN_VALUE;
 
-//        for (Nappula n : l.getPelaajanNappulat(pelaaja)) {
-//            for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
-//                int uusiArvio = this.alphaBeta(nappulanSiirrot,
-//                        Integer.MIN_VALUE, Integer.MAX_VALUE,
-//                        montaSiirtoa - 1, !pelaaja);
-//                if (parasArvio <= uusiArvio) {
-//                    parasArvio = uusiArvio;
-//                    parasSiirto = nappulanSiirrot;
-//                }
-//            }
-//        }
-        for (int i = 0; i < l.getNappulat().length; i++) {
-            Nappula n = l.getNappulat()[i];
+        for (Nappula n : l.getNappulat()) {
             if (n.getVari() == this.pelaaja) {
                 for (Nappula[] nappulanSiirrot : nappulanSiirrot(n, l.getNappulat())) {
                     int uusiArvio = this.alphaBeta(nappulanSiirrot,
                             Integer.MIN_VALUE, Integer.MAX_VALUE,
                             montaSiirtoa - 1, !pelaaja);
-                    if (parasArvio <= uusiArvio) {
+                    if (parasArvio < uusiArvio) {
                         parasArvio = uusiArvio;
                         parasSiirto = nappulanSiirrot;
                     }
@@ -84,7 +74,7 @@ public class Alphabeta {
     public int alphaBeta(Nappula[] nappulat, int alpha, int beta,
             int syvyys, boolean vuorossa) {
         int tilanne = arvioiLauta(nappulat);
-        if (syvyys == 0) {
+        if (syvyys == 0 || Math.abs(tilanne) > 5000) {
             return tilanne;
         }
         if (vuorossa == pelaaja) {
