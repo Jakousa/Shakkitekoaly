@@ -9,12 +9,12 @@ import java.util.Scanner;
 import shakkitekoaly.Alphabeta;
 
 public class Shakkipeli {
-
+    
     private final Lauta lauta;
     private Alphabeta tekoaly1;
     private Alphabeta tekoaly2;
     private Pelaaja pelaaja;
-
+    
     public Shakkipeli() {
         this.lauta = new Lauta();
         this.tekoaly1 = null;

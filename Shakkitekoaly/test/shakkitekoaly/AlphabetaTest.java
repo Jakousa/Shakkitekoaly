@@ -49,7 +49,7 @@ public class AlphabetaTest {
         nappulat[0] = new Kuningas(new Sijainti(3, 3), false);
         nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
-        nappulat[3] = new Kuningas(new Sijainti(0,7), true);
+        nappulat[3] = new Kuningas(new Sijainti(0, 7), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l);
@@ -70,7 +70,7 @@ public class AlphabetaTest {
         nappulat[1] = new Lahetti(new Sijainti(4, 4), true);
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
         nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
-        nappulat[4] = new Kuningas(new Sijainti(0,7), true);
+        nappulat[4] = new Kuningas(new Sijainti(0, 7), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Pitäisi syödä Kuningattarella Lähetti.
@@ -96,7 +96,7 @@ public class AlphabetaTest {
         nappulat[2] = new Torni(new Sijainti(4, 5), true);
         nappulat[3] = new Kuningatar(new Sijainti(5, 5), false);
         nappulat[4] = new Kuningatar(new Sijainti(6, 6), true);
-        nappulat[5] = new Kuningas(new Sijainti(7,0), true);
+        nappulat[5] = new Kuningas(new Sijainti(7, 0), true);
         l = new Lauta(nappulat);
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Pitäisi syödä kuningattarella lähetti.
@@ -117,24 +117,66 @@ public class AlphabetaTest {
         nappulat[5] = new Kuningas(new Sijainti(0, 4), true);
         nappulat[6] = new Torni(new Sijainti(7, 0), true);
         l = new Lauta(nappulat);
-        /**
-         *  ####K###0
-         *  #######t1
-         *  ###t#t##2
-         *  ######t#3
-         *  ########4
-         *  ########5
-         *  ########6
-         *  T######k7
-         *  abcdefgh*
-         */
+
+        // ####K###0 
+        // #######t1 
+        // ###t#t##2 
+        // ######t#3 
+        // ########4 
+        // ########5 
+        // ########6
+        // T######k7 
+        // abcdefgh*
         int arvioAlku = tosifiksu.arvioiLauta(l.getNappulat());
         tosifiksu.teeSiirto(l); //Älykäs ei uhraa omaa kuningasta
-        tosifiksu.teeSiirto(l); //Kuningas on turvassa ja aika siirtää tornia
         int arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
         assertTrue(arvioAlku == arvioLoppu);
-        tosifiksu.teeSiirto(l); //Vastustajan kuningas syödään vasta nyt tornilla
+        tosifiksu.teeSiirto(l); //Kuningas on turvassa ja aika siirtää tornia
         arvioLoppu = tosifiksu.arvioiLauta(l.getNappulat());
-        //assertTrue(Math.abs(arvioAlku - arvioLoppu) > 5000); //Sitä ei syödä....
+        assertTrue(arvioAlku == arvioLoppu);
+    }
+
+    @Test 
+    public void tapahtuukoKarsintaa() {
+        int testienmaara = 100;
+        Alphabeta tosifiksu = new Alphabeta(true, 2);
+        Alphabeta epatosifiksu = new Alphabeta(false, 2);
+        Lauta l = null;
+        Nappula[] nappulat = new Nappula[10];
+        nappulat[0] = new Kuningatar(new Sijainti(4, 0), true);
+        nappulat[1] = new Kuningatar(new Sijainti(4, 7), false);
+        
+        nappulat[2] = new Sotilas(new Sijainti(7, 0), true);
+        nappulat[3] = new Sotilas(new Sijainti(7, 1), true);
+        nappulat[4] = new Sotilas(new Sijainti(7, 2), true);
+        nappulat[5] = new Sotilas(new Sijainti(7, 3), true);
+        nappulat[6] = new Sotilas(new Sijainti(0, 4), false);
+        nappulat[7] = new Sotilas(new Sijainti(0, 5), false);
+        nappulat[8] = new Sotilas(new Sijainti(0, 6), false);
+        nappulat[9] = new Sotilas(new Sijainti(0, 7), false);
+
+        long aikaAlussa = System.currentTimeMillis();
+        for (int i = 0; i < testienmaara; i++) {
+            l = new Lauta(nappulat);
+            tosifiksu.teeSiirto(l);
+        }
+        long aikaLopussa = System.currentTimeMillis();
+        long ensin = (aikaLopussa - aikaAlussa);
+
+        nappulat[0] = new Sotilas(new Sijainti(0, 7), false);
+        nappulat[1] = new Sotilas(new Sijainti(7, 3), true);
+        nappulat[9] = new Kuningatar(new Sijainti(4, 7), true);
+        nappulat[5] = new Kuningatar(new Sijainti(4, 0), false);
+        
+        aikaAlussa = System.currentTimeMillis();
+        for (int i = 0; i < testienmaara; i++) {
+            l = new Lauta(nappulat);
+            epatosifiksu.teeSiirto(l);
+        }
+        aikaLopussa = System.currentTimeMillis();
+        long sitten = (aikaLopussa - aikaAlussa);
+        System.out.println("Karsintatestissä pienempi?: " + sitten); //Miksi pienempi
+        System.out.println("Karsintatestissä isompi?: " + ensin); //Miksi isompi
+        assertTrue(Math.abs(sitten - ensin) > (Math.min(ensin, sitten))/3);//hatusta 3
     }
 }
