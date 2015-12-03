@@ -1,13 +1,14 @@
+
+package shakkitekoaly.nappula;
+
+import java.util.Objects;
+
 /**
  * Abstrakti luokka pitää sisällään metodeja kuten siirtmistarkastelua jotka
  * muuten täytyisi toistaa jokaiselle (6) nappulalle erikseen.
  *
  * Sisältää sijainnin, nappulan tyypin ja värin.
  */
-package shakkitekoaly.nappula;
-
-import java.util.Objects;
-
 public abstract class Nappula {
 
     private Sijainti sijainti;
@@ -27,18 +28,34 @@ public abstract class Nappula {
         this.tyyppi = tyyppi;
     }
 
+    /**
+     * Palauttaa nappulan tyypin.
+     * @return Nappulan tyyppi.
+     */
     public Tyyppi getTyyppi() {
         return tyyppi;
     }
 
+    /**
+     * Palauttaa kumman puolelle nappula kuuluu.
+     * @return Boolean arvona nappulan värin.
+     */
     public boolean getVari() {
         return vari;
     }
 
+    /**
+     * Palauttaa nappulan sijainnin.
+     * @return Sijainti-oliona nappulan sijainti laudalla.
+     */
     public Sijainti getSijainti() {
         return sijainti;
     }
 
+    /**
+     * Asettaa tai siirtää nappulaa laudalla.
+     * @param s Sijainti jossa nappulan halutaan sijaitsevan.
+     */
     public void setSijainti(Sijainti s) {
         this.sijainti = s;
     }
@@ -86,8 +103,8 @@ public abstract class Nappula {
     /**
      * Tarkistetaan onko nappula sama kuin toinen nappula.
      *
-     * @param o
-     * @return
+     * @param o Verrattava nappula.
+     * @return Tosi jos nappula on saman värinen, samaa tyyppiä ja sijaitsee samassa paikassa.
      */
     @Override
     public boolean equals(Object o) {
@@ -97,6 +114,10 @@ public abstract class Nappula {
         return o.hashCode() == this.hashCode();
     }
 
+    /**
+     * Nappulan hashcode luodaan käyttämällä sijaintia, tyyppiä ja väriä.
+     * @return Palauttaa kokonaisluvun joka riippuu sijainnista, tyypistä ja väristä.
+     */
     @Override
     public int hashCode() {
         int hash = 7;

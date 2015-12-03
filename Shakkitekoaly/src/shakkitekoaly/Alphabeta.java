@@ -30,7 +30,7 @@ public class Alphabeta {
      * syvyys) jonka jälkeen kutsuu alphaBetalta arviota siirrosta ja tekee
      * parhaimman siirron
      *
-     * @param l
+     * @param l Lauta jolla siirto halutaan tehdä.
      */
     public void teeSiirto(Lauta l) {
         Nappula[] parasSiirto = null;
@@ -67,8 +67,8 @@ public class Alphabeta {
      * Arvioi laudan mahdollisia siirtoja Alpha-beta algoritmin mukaan
      *
      * @param nappulat Laudan tilanne
-     * @param alpha
-     * @param beta
+     * @param alpha Suurin pienimmistä puun oksista, olennainen osa alpha-betaa
+     * @param beta Pienin suurimmista puun oksista, olennainen osa alpha-betaa
      * @param syvyys Kuinka monta siirtoa etsitään
      * @param vuorossa Pelaaja jonka vuoro on
      * @return Palauttaa parhaimman arvion
