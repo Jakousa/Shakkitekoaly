@@ -1,8 +1,3 @@
-/**
- * Luokka määrittelee alpha-beta algoritmin ja pystyy tekemään arvion laudan
- * tilanteesta sekä siirtää nappulaa sen mukaan.
- *
- */
 package shakkitekoaly;
 
 import shakkitekoaly.Shakki.Lauta;
@@ -10,6 +5,11 @@ import java.util.Arrays;
 import shakkitekoaly.nappula.Nappula;
 import shakkitekoaly.nappula.Sijainti;
 
+/**
+ * Luokka määrittelee alpha-beta algoritmin ja pystyy tekemään arvion laudan
+ * tilanteesta sekä siirtää nappulaa sen mukaan.
+ *
+ */
 public class Alphabeta {
 
     private final int montaSiirtoa;
@@ -51,7 +51,7 @@ public class Alphabeta {
                         }
                         parasArvio = uusiArvio;
                         parasSiirto = nappulanSiirrot;
-                        
+
                     }
                 }
             }

@@ -1,13 +1,22 @@
-/**
- * Lähetti on nappula, joka pystyy siirtymään kuinka tahansa paljon kulmittain.
- */
+
 package shakkitekoaly.nappula;
 
 import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.LAHETTI;
 
+/**
+ * Luokka perii Nappula luokan,
+ * Lähetti on nappula, joka pystyy siirtymään kuinka tahansa paljon kulmittain.
+ */
 public class Lahetti extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Lahetti(Sijainti s, boolean vari) {
         super(s, vari, LAHETTI);
     }

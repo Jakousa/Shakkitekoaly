@@ -1,14 +1,12 @@
-/**
- *
- * Lauta pitää jonoa nappuloita joilla peliä pelataan, se pystyy myös siirtämään
- * niitä ja osaa syödä pystyy myös tulostamaan pelilaudan tilanteen.
- *
- */
 package shakkitekoaly.Shakki;
 
 import shakkitekoaly.nappula.*;
 import static shakkitekoaly.nappula.Tyyppi.*;
 
+/**
+ * Lauta pitää jonoa nappuloita joilla peliä pelataan, se pystyy myös siirtämään
+ * niitä ja osaa syödä pystyy myös tulostamaan pelilaudan tilanteen.
+ */
 public class Lauta {
 
     private Nappula[] lauta;
@@ -85,6 +83,11 @@ public class Lauta {
         this.lauta = nappulaTilanne;
     }
 
+    /**
+     * Palauttaa laudalla sillä hetkellä olevat nappulat
+     *
+     * @return nappulat listassa
+     */
     public Nappula[] getNappulat() {
         return this.lauta;
     }
@@ -141,8 +144,8 @@ public class Lauta {
         int x = n.getSijainti().getX();
         int y = n.getSijainti().getY();
 
-        int pit = Math.max(Math.abs(x - kohde.getX()),Math.abs(y - kohde.getY()));
-        Sijainti[] mahd = new Sijainti[pit-1];
+        int pit = Math.max(Math.abs(x - kohde.getX()), Math.abs(y - kohde.getY()));
+        Sijainti[] mahd = new Sijainti[pit - 1];
 
         for (int i = 0; i < mahd.length; i++) {
             uus = new Sijainti(uus.getX(), uus.getY());

@@ -1,14 +1,23 @@
-/**
- *  Kuningatar on nappula, joka voi siirtyä suoraan tai kulmittain kuinka tahansa
- * paljon.
- */
+
 package shakkitekoaly.nappula;
 
 import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.KUNINGATAR;
 
+/**
+ * Luokka perii Nappula luokan,
+ * Kuningatar on nappula, joka voi siirtyä suoraan tai kulmittain kuinka tahansa
+ * paljon.
+ */
 public class Kuningatar extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Kuningatar(Sijainti s, boolean vari) {
         super(s, vari, KUNINGATAR);
     }

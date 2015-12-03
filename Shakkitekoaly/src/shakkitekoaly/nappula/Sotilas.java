@@ -1,13 +1,22 @@
-/**
- *  Sotilas on nappula joka pystyy siirtymään tavallisesti vain yhden ruudun eteenpäin ja
- *  kulmittain yhden ruudun jos se syö sieltä.
- */
+
 package shakkitekoaly.nappula;
 
 import static shakkitekoaly.nappula.Tyyppi.SOTILAS;
 
+/**
+ * Luokka perii Nappula luokan,
+ * Sotilas on nappula joka pystyy siirtymään tavallisesti vain yhden ruudun
+ * eteenpäin ja kulmittain yhden ruudun jos se syö sieltä.
+ */
 public class Sotilas extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Sotilas(Sijainti s, boolean vari) {
         super(s, vari, SOTILAS);
     }
@@ -45,13 +54,13 @@ public class Sotilas extends Nappula {
         }
         int k = 0;
         for (int i = -1; i < 2; i++) {
-            if (y+i > 7 || y+i < 0) {
+            if (y + i > 7 || y + i < 0) {
                 continue;
             }
             if (this.getVari()) {
-                paikat[k++] = new Sijainti(x-1,y+i);
+                paikat[k++] = new Sijainti(x - 1, y + i);
             } else {
-                paikat[k++] = new Sijainti(x+1,y+i);
+                paikat[k++] = new Sijainti(x + 1, y + i);
             }
         }
         return paikat;

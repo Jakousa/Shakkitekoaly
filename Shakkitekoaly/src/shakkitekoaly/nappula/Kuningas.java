@@ -1,13 +1,22 @@
-/**
- *  Kuningas on nappula joka voi siirtyä yhden ruudun mihin tahansa suuntaan.
- */
+
 package shakkitekoaly.nappula;
 
 import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.KUNINGAS;
 
+/**
+ * Luokka perii Nappula luokan, 
+ * Kuningas on nappula joka voi siirtyä yhden ruudun mihin tahansa suuntaan.
+ */
 public class Kuningas extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Kuningas(Sijainti s, boolean vari) {
         super(s, vari, KUNINGAS);
     }
@@ -36,7 +45,7 @@ public class Kuningas extends Nappula {
                 if (x > 7 || x < 0 || y < 0 || y > 7) {
                     continue;
                 }
-                
+
                 Sijainti s = new Sijainti(x, y);
                 if (!s.equals(this.getSijainti())) {
                     paikat[k++] = s;

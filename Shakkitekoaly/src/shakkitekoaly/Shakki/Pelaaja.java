@@ -1,30 +1,40 @@
-/**
- * Pelaaja luokassa on pelaajalle kyselyjä ja se pitää yllä kummalla puolella 
- * pelaaja on.
- */
-
 package shakkitekoaly.Shakki;
 
 import java.util.Scanner;
 import shakkitekoaly.nappula.*;
 
+/**
+ * Pelaaja luokassa on pelaajalle kyselyjä ja se pitää yllä kummalla puolella
+ * pelaaja on.
+ */
 public class Pelaaja {
 
     private final boolean pelaaja;
     private final Scanner lukija;
 
+    /**
+     * Pelaaja konstruktori vaatii pelaajan roolin.
+     *
+     * @param vuorolla Kummalla värillä pelaaja pelaa booleanina.
+     */
     public Pelaaja(boolean vuorolla) {
         this.pelaaja = vuorolla;
         this.lukija = new Scanner(System.in);
     }
 
+    /**
+     * Palauttaa pelaajan värin.
+     *
+     * @return Pelaajan väri boolean arvona.
+     */
     public boolean getPelaaja() {
         return pelaaja;
     }
 
     /**
-     * Pelaajan vuorolla kysytään mitä pelaaja haluaisi siirtää ja koitetaan tehdä
-     * se siirto.
+     * Pelaajan vuorolla kysytään mitä pelaaja haluaisi siirtää ja koitetaan
+     * tehdä se siirto.
+     *
      * @param l Pelilauta jolla pelaaja tulee liikkumaan.
      */
     public void teeValinta(Lauta l) {

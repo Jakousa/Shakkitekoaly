@@ -1,20 +1,22 @@
-/**
- * Shakkipeli luokka ylläpitää shakkipeliä johon kuuluu lauta ja kaksi pelaajaa,
- * molemmat pelaajista voivat olla tekoälyjä tai toinen voi olla pelaaja.
- */
-
 package shakkitekoaly.Shakki;
 
 import java.util.Scanner;
 import shakkitekoaly.Alphabeta;
 
+/**
+ * Shakkipeli luokka ylläpitää shakkipeliä johon kuuluu lauta ja kaksi pelaajaa,
+ * molemmat pelaajista voivat olla tekoälyjä tai toinen voi olla pelaaja.
+ */
 public class Shakkipeli {
-    
+
     private final Lauta lauta;
     private Alphabeta tekoaly1;
     private Alphabeta tekoaly2;
     private Pelaaja pelaaja;
-    
+
+    /**
+     * Konstruktori luo uuden laudan ja valmistaa kaikki pelaajat.
+     */
     public Shakkipeli() {
         this.lauta = new Lauta();
         this.tekoaly1 = null;
@@ -25,7 +27,6 @@ public class Shakkipeli {
     /**
      * Kysyy kysymykset joita pelin alussa on tarpeellista kysyä käyttäjältä.
      */
-    
     private void alkuKysely() {
         Scanner lukija = new Scanner(System.in);
         String ok = "S";
@@ -68,10 +69,10 @@ public class Shakkipeli {
     }
 
     /**
-     * Alkukysely kutsutaan jonka jälkeen looppi joka pyörii kunnes 
-     * tekoälyn lauta-arvio sanoo että joku kuningas on syöty,
-     * loopissa pyydetään tekoälyä tekemään siirto jonka jälkeen toista tekoälyä
-     * tai pelaajaa pyydetään siirtämään riippuen aloittajasta.
+     * Alkukysely kutsutaan jonka jälkeen looppi joka pyörii kunnes tekoälyn
+     * lauta-arvio sanoo että joku kuningas on syöty, loopissa pyydetään
+     * tekoälyä tekemään siirto jonka jälkeen toista tekoälyä tai pelaajaa
+     * pyydetään siirtämään riippuen aloittajasta.
      */
     public void pelaa() {
         alkuKysely();

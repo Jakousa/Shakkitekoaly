@@ -1,13 +1,20 @@
-/**
- *  Torni on nappula joka pystyy siirtymään kuinka tahansa paljon 
- *  suoraan eteen, taakse tai sivuille.
- */
 package shakkitekoaly.nappula;
 
 import static shakkitekoaly.nappula.Tyyppi.TORNI;
 
+/**
+ * Luokka perii Nappula luokan, Torni on nappula joka pystyy siirtymään kuinka
+ * tahansa paljon suoraan eteen, taakse tai sivuille.
+ */
 public class Torni extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Torni(Sijainti s, boolean vari) {
         super(s, vari, TORNI);
     }

@@ -1,15 +1,24 @@
-/**
- * Ratsu on nappula joka voi siirtyä erityisellä tavalla, Se ei rajoita jos
- * tiellä on toinen nappula ja ratsu siirtyy L muodossa: ensin kaksi haluttuun 
- * suuntaan ja sitten yhden siitä sivulle.
- */
+
 package shakkitekoaly.nappula;
 
 import java.util.Arrays;
 import static shakkitekoaly.nappula.Tyyppi.RATSU;
 
+/**
+ * Luokka perii Nappula luokan,
+ * Ratsu on nappula joka voi siirtyä erityisellä tavalla, Se ei rajoita jos
+ * tiellä on toinen nappula ja ratsu siirtyy L muodossa: ensin kaksi haluttuun
+ * suuntaan ja sitten yhden siitä sivulle.
+ */
 public class Ratsu extends Nappula {
 
+    /**
+     * Konstruktori kutsuu Nappulan konstruktoria annetuilla arvoilla ja lisää
+     * siihen oman tyyppinsä.
+     *
+     * @param s Mihin nappula luodaan
+     * @param vari Kumman pelaajan nappula on
+     */
     public Ratsu(Sijainti s, boolean vari) {
         super(s, vari, RATSU);
     }
