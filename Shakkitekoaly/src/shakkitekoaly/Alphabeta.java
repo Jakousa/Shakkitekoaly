@@ -12,9 +12,8 @@ import shakkitekoaly.nappula.Sijainti;
 
 public class Alphabeta {
 
-    private int montaSiirtoa;
+    private final int montaSiirtoa;
     private final boolean pelaaja;
-    private int parasSyvyys;
 
     /**
      *
@@ -24,10 +23,6 @@ public class Alphabeta {
     public Alphabeta(boolean pelaaja, int syvyys) {
         this.pelaaja = pelaaja;
         this.montaSiirtoa = syvyys;
-    }
-
-    public boolean getPelaaja() {
-        return pelaaja;
     }
 
     /**
@@ -47,9 +42,16 @@ public class Alphabeta {
                     int uusiArvio = this.alphaBeta(nappulanSiirrot,
                             Integer.MIN_VALUE, Integer.MAX_VALUE,
                             montaSiirtoa - 1, !pelaaja);
-                    if (parasArvio < uusiArvio) {
+                    if (parasArvio <= uusiArvio) {
+                        if (parasArvio == uusiArvio) { //Vältellään jumitusta
+                            double r = Math.random();
+                            if (1 == (int) r) {
+                                continue;
+                            }
+                        }
                         parasArvio = uusiArvio;
                         parasSiirto = nappulanSiirrot;
+                        
                     }
                 }
             }

@@ -40,15 +40,26 @@ public class Shakkipeli {
             if (aloitus.equalsIgnoreCase("Y")) {
                 this.pelaaja = new Pelaaja(true);
             } else {
+                System.out.println("Ei sitten.");
                 this.pelaaja = new Pelaaja(false);
             }
         } else {
             System.out.println("Minkä tasoinen VALKOINEN tekoäly? \n Suosittelen < 5");
-            int vaikeustaso = Integer.parseInt(lukija.nextLine());
+            int vaikeustaso = 3;
+            try {
+                vaikeustaso = Integer.parseInt(lukija.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Eli kolme..");
+            }
             tekoaly2 = new Alphabeta(true, vaikeustaso);
         }
         System.out.println("Minkä tasoinen toinen pelaaja? \n Suosittelen < 5");
-        int syvyys = Integer.parseInt(lukija.nextLine());
+        int syvyys = 3;
+        try {
+            syvyys = Integer.parseInt(lukija.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Eli kolme..");
+        }
         if (aloitus.equalsIgnoreCase("Y")) {
             tekoaly1 = new Alphabeta(false, syvyys);
         } else {
