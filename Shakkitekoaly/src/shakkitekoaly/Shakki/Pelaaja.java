@@ -46,29 +46,34 @@ public class Pelaaja {
 
         while (loop) {
             while (loop) {
-                System.out.println("Minkä haluat siirtää. esim. C5");
+                System.out.println("Minkä haluat siirtää? esim. C5");
                 String mist = lukija.nextLine();
                 mist = mist.toLowerCase();
-                y1 = ((int) mist.charAt(0) - 97);
-                x1 = ((int) mist.charAt(1) - 48);
-                if (x1 > 7 || x1 < 0 || y1 < 0 || y1 > 7) {
-                    System.out.println("Ei ole kentällä.");
-                } else {
-                    loop = false;
+                if (mist.length() == 2) {
+                    y1 = ((int) mist.charAt(0) - 97);
+                    x1 = ((int) mist.charAt(1) - 48);
+                    if (x1 < 8 && x1 >= 0 && y1 >= 0 && y1 < 8) {
+                        loop = false;
+                        break;
+                    }
                 }
+                System.out.println("Ei ole kentällä.");
+
             }
             loop = true;
             while (loop) {
-                System.out.println("Minne haluat siirtää. esim. E7");
+                System.out.println("Minne haluat siirtää? esim. E7");
                 String mihi = lukija.nextLine();
                 mihi = mihi.toLowerCase();
-                y2 = ((int) mihi.charAt(0) - 97);
-                x2 = ((int) mihi.charAt(1) - 48);
-                if (x2 > 7 || x2 < 0 || y2 < 0 || y2 > 7) {
-                    System.out.println("Ei ole kentällä.");
-                } else {
-                    loop = false;
+                if (mihi.length() == 2) {
+                    y2 = ((int) mihi.charAt(0) - 97);
+                    x2 = ((int) mihi.charAt(1) - 48);
+                    if (x2 < 8 && x2 >= 0 && y2 >= 0 && y2 < 8) {
+                        loop = false;
+                        break;
+                    }
                 }
+                System.out.println("Ei ole kentällä.");
             }
             Nappula n = null;
             for (Nappula nappula : l.getNappulat()) {

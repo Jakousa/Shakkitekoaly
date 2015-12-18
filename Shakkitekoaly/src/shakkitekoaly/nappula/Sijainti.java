@@ -16,7 +16,7 @@ public class Sijainti {
      * @param y Positiivinen koordinaatti jossa sijainti on, pienempi kuin 8.
      */
     public Sijainti(int x, int y) {
-        if (x > 7 || x < 0 || y < 0 || y > 7) {
+        if (x < 0 || y < 0) {
             throw new IllegalArgumentException("Yritettiin luoda sijaintia kentän ulkopuolelle");
         } else {
             this.x = x;
@@ -38,7 +38,7 @@ public class Sijainti {
      * @param x Positiivinen koordinaatti jossa sijainti on, pienempi kuin 8.
      */
     public void setX(int x) {
-        if (x > 7 || x < 0) {
+        if (x < 0) {
             throw new IllegalArgumentException("Yritettiin asettaa sijaintia kentän ulkopuolelle");
         } else {
             this.x = x;
@@ -59,7 +59,7 @@ public class Sijainti {
      * @param y Positiivinen koordinaatti jossa sijainti on, pienempi kuin 8.
      */
     public void setY(int y) {
-        if (y < 0 || y > 7) {
+        if (y < 0) {
             throw new IllegalArgumentException("Yritettiin asettaa sijaintia kentän ulkopuolelle");
         } else {
             this.y = y;

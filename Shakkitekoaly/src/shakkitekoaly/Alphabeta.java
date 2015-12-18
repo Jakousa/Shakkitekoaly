@@ -146,7 +146,6 @@ public class Alphabeta {
                     break;
             }
         }
-        //v += (int) (Math.random() * 3); //Lisättiin ihan vain huviksi, tuhoaa testit
         return v;
     }
 

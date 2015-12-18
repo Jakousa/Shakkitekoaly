@@ -10,6 +10,7 @@ import static shakkitekoaly.nappula.Tyyppi.*;
 public class Lauta {
 
     private Nappula[] lauta;
+    private int laudanLeveys = 8;
 
     /**
      * Nappulat luodaan konstruktorin aikana.
@@ -42,7 +43,6 @@ public class Lauta {
      */
     public Lauta(Nappula[] nappulat) {
         this.lauta = new Nappula[nappulat.length];
-
         for (int i = 0; i < lauta.length; i++) {
             Nappula n = nappulat[i];
             switch (n.getTyyppi()) {
@@ -90,6 +90,10 @@ public class Lauta {
      */
     public Nappula[] getNappulat() {
         return this.lauta;
+    }
+    
+    public int getLaudanLeveys() {
+        return this.laudanLeveys;
     }
 
     /**
@@ -185,7 +189,7 @@ public class Lauta {
      */
     private int alustusApu(int aloitusX, boolean vari, int kohta, Nappula[] l) {
         int i = 0;
-        if (aloitusX == 0 || aloitusX == 7) {
+        if (aloitusX == 0 || aloitusX == this.laudanLeveys-1) {
             l[kohta++] = new Torni(new Sijainti(aloitusX, i++), vari);
             l[kohta++] = new Ratsu(new Sijainti(aloitusX, i++), vari);
             l[kohta++] = new Lahetti(new Sijainti(aloitusX, i++), vari);
@@ -207,7 +211,7 @@ public class Lauta {
      */
     public void piirraLauta() {
         Nappula[] piirrettava = lauta;
-        char[][] piirros = new char[9][9];
+        char[][] piirros = new char[this.laudanLeveys+1][this.laudanLeveys+1];
         for (char[] piirro : piirros) {
             for (int j = 0; j < piirro.length; j++) {
                 piirro[j] = '#';
@@ -218,11 +222,11 @@ public class Lauta {
             int y = nappula.getSijainti().getY();
             piirros[x][y] = nappula.piirra();
         }
-        for (int i = 0; i < piirros[8].length - 1; i++) {
+        for (int i = 0; i < piirros[this.laudanLeveys].length - 1; i++) {
             piirros[8][i] = (char) (i + 97);
             piirros[i][8] = (char) (i + 48);
         }
-        piirros[8][8] = '*';
+        piirros[this.laudanLeveys][this.laudanLeveys] = '*';
         for (char[] piirro : piirros) {
             for (int j = 0; j < piirro.length; j++) {
                 System.out.print(piirro[j]);
