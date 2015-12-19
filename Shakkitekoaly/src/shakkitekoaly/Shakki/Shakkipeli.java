@@ -77,6 +77,9 @@ public class Shakkipeli {
     public void pelaa() {
         alkuKysely();
         long kokoAika = System.currentTimeMillis();
+        long pelaaja1KokoAika = 0;
+        int siirtoja = 0;
+        long pelaaja2KokoAika = 0;
         while (Math.abs(tekoaly1.arvioiLauta(lauta.getNappulat())) < 5000) {
             lauta.piirraLauta();
             System.out.println("Tekoälyn antama arvio: " + tekoaly1.arvioiLauta(lauta.getNappulat()));
@@ -89,6 +92,7 @@ public class Shakkipeli {
                 lauta.piirraLauta();
                 System.out.println("Aikaa kului: " + (aikaLopussa - aikaAlussa) + "ms.");
                 System.out.println("Aikaa kokonaisuudessaan: " + (aikaLopussa - kokoAika) + "ms.");
+                pelaaja1KokoAika += aikaLopussa-aikaAlussa;
             } else {
                 if (pelaaja.getPelaaja()) {
                     pelaaja.teeValinta(lauta);
@@ -101,6 +105,8 @@ public class Shakkipeli {
             lauta.piirraLauta();
             System.out.println("Aikaa kului: " + (aikaLopussa - aikaAlussa) + "ms.");
             System.out.println("Aikaa kokonaisuudessaan: " + (aikaLopussa - kokoAika) + "ms.");
+            pelaaja2KokoAika += aikaLopussa-aikaAlussa;
+
 
             if (pelaaja != null) {
                 if (!pelaaja.getPelaaja()) {
@@ -108,8 +114,16 @@ public class Shakkipeli {
                     lauta.piirraLauta();
                 }
             }
+            siirtoja++;
+            System.out.println("Pelaajalla yksi kulunut aika: " + pelaaja1KokoAika + "ms. Siirroissa: " + siirtoja);
+            System.out.println("Keskiarvo: " + (pelaaja1KokoAika/siirtoja));
+            System.out.println("Pelaajalla kaksi kulunut aika: " + pelaaja2KokoAika + "ms. Siirroissa: " + siirtoja);
+            System.out.println("Keskiarvo: " + (pelaaja2KokoAika/siirtoja));
         }
         lauta.piirraLauta();
-        System.out.println(tekoaly1.arvioiLauta(lauta.getNappulat()));
+        System.out.println("Pelaajalla yksi kulunut aika: " + pelaaja1KokoAika + "ms. Siirroissa: " + siirtoja);
+        System.out.println("Keskiarvo: " + (pelaaja1KokoAika/siirtoja));
+        System.out.println("Pelaajalla kaksi kulunut aika: " + pelaaja2KokoAika + "ms. Siirroissa: " + siirtoja);
+        System.out.println("Keskiarvo: " + (pelaaja2KokoAika/siirtoja));
     }
 }
